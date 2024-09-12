@@ -1,0 +1,7 @@
+import * as styles from "./App.module.scss"
+
+function App() {
+    return <div className={styles.app}>App</div>
+}
+
+export default App
