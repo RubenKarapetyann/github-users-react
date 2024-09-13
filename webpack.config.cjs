@@ -11,14 +11,14 @@ module.exports = {
                 use: 'ts-loader',
                 exclude: /node_modules/,
             },
-            {
-                test: /\.module\.(c|sa|sc)ss$/,
-                use: [
-                    { loader: "style-loader", options: { esModule: true } },
-                    { loader: "css-loader", options: { modules: true } },
-                    { loader: "sass-loader" },
-                ]
-            },
+            // {
+            //     test: /\.module\.(c|sa|sc)ss$/,
+            //     use: [
+            //         { loader: "style-loader", options: { esModule: true } },
+            //         { loader: "css-loader", options: { modules: true } },
+            //         { loader: "sass-loader" },
+            //     ]
+            // },
             {
                 test: /\.(c|sa|sc)ss$/,
                 use: [
@@ -30,7 +30,7 @@ module.exports = {
         ],
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.module.scss', '.scss', '.js'],
+        extensions: ['.tsx', '.ts', '.scss', '.js'],
     },
     output: {
         filename: 'bundle.js',
