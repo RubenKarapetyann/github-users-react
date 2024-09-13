@@ -1,5 +1,6 @@
 const path = require("path")
 // const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
     entry: './src/index.tsx',
@@ -29,7 +30,7 @@ module.exports = {
         ],
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.module.scss', '.scss'],
+        extensions: ['.tsx', '.ts', '.module.scss', '.scss', '.js'],
     },
     output: {
         filename: 'bundle.js',
@@ -37,7 +38,17 @@ module.exports = {
     },
     mode: "development",
     devServer: {
-        static: './dist',
-        port: 6000
-    }
+        port: 3000,
+        historyApiFallback: {
+            index: './public/index.html'
+        },
+        hot: true,
+        open: true,
+        static: {
+            directory: path.join(__dirname, 'dist'),
+        }
+    },
+    plugins: [
+        new HtmlWebpackPlugin({ template: './public/index.html' })
+    ]
 }

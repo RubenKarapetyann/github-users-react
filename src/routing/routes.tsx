@@ -1,17 +1,15 @@
-import { Route } from "../types/constants/routes"
+import { RouteObject } from "react-router-dom"
 
-const HOME: Route = {
-    path: "/home",
+const HOME: RouteObject = {
+    path: "/",
     element: <>home</>,
-    id: 1
 }
 
-const FAVOURITE: Route = {
+const FAVOURITE: RouteObject = {
     path: "/favourite",
     element: <>favourite</>,
-    id: 2
 }
 
-const ROUTES: Route[] = [HOME, FAVOURITE]
+const ROUTES: RouteObject[] = [HOME, FAVOURITE]
 
 export default ROUTES

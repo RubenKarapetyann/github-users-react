@@ -1,7 +1,8 @@
+import Router from "../../routing/Router"
 import * as styles from "./App.module.scss"
 
 function App() {
-    return <div className={styles.app}>App</div>
+    return <Router/>
 }
 
 export default App
