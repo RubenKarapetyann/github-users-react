@@ -1,0 +1,10 @@
+@use "../../../../styles/mixins";
+@use "../../../../styles/palette";
+
+.searchHeaderContainer {
+    width: 100vw;
+    height: auto;
+    @include mixins.flex();
+    background-color: palette.$orange;
+    padding: 10px;
+}
