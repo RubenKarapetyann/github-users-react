@@ -8,6 +8,7 @@ const NavBar = () => (
             <NavLink
                 path={item.path}
                 displayName={item.displayName}
+                key={item.id}
             />
         ))}
     </nav>
