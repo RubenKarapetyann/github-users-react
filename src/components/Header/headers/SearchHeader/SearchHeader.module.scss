@@ -7,4 +7,12 @@
     @include mixins.flex();
     background-color: palette.$orange;
     padding: 10px;
+    flex-direction: column;
+    color: palette.$white;
+    gap: 5px;
+
+    > span {
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
 }
