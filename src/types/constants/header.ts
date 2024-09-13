@@ -1,5 +1,6 @@
 export interface HeaderItem {
     displayName: string,
     id: number,
-    name: string
+    name: string,
+    path: string
 }
