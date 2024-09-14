@@ -5,6 +5,7 @@ import * as styles from "../../styles/styles.scss"
 import { UserOfList } from "../../types/api/users";
 import { useSearch } from "../../contexts/SearchContext/SearchContext";
 import useSearchDelay from "../../hooks/useSearchDelay";
+import { EmptyList } from "../../components/Placeholders";
 
 export default function Favourite() {
     const [users, setUsers] = useState<UserOfList[]>([])
@@ -33,7 +34,7 @@ export default function Favourite() {
             {
                 favourite?.users.length ? 
                 <UsersList users={users} /> :
-                <h3>there are not users yet !</h3>
+                <EmptyList/>
             }
         </div>
     )

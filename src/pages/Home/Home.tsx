@@ -7,7 +7,7 @@ import * as styles from "../../styles/styles.scss"
 import { useSearch } from "../../contexts/SearchContext/SearchContext";
 import useSearchDelay from "../../hooks/useSearchDelay";
 import { PAGINATION } from "../../constants/global";
-import Loading from "../../components/Placeholders/Loading/Loading";
+import { Loading } from "../../components/Placeholders";
 
 export default function Home() {
     const [users, setUsers] = useState<UserOfList[]>([])
