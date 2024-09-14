@@ -1,0 +1,22 @@
+.usersListContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 20px;
+    row-gap: 15px;
+    padding: 20px;
+    padding-top: 50px;
+    width: 100%;
+    max-width: 900px;
+}
+
+@media screen and (max-width: 1008px) {
+    .usersListContainer {
+        grid-template-columns: repeat(2, 1fr)
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .usersListContainer {
+        grid-template-columns: repeat(1, 1fr)
+    }
+}
