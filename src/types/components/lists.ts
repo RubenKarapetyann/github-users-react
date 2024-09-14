@@ -9,3 +9,7 @@ export interface UsersListProps {
 export interface StarProps {
     active: boolean
 }
+
+export interface RecomendedUsersProps {
+    since: number
+}

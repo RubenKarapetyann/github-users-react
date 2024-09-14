@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import { User } from "../../types/api/users"
 import getData from "../../utils/api/getData"
 import { USERS_ENDPOINT } from "../../constants/api"
+import { RecomendedUsers } from "../../components/Lists"
 
 export default function Profile() {
     const { login } = useParams()
@@ -21,5 +22,10 @@ export default function Profile() {
 
     if (!user) return
 
-    return <div className={styles.flexColumn}><ProfileLayout user={user}/></div>
+    return (
+        <div className={styles.flexColumn}>
+            <ProfileLayout user={user}/>
+            <RecomendedUsers since={user.id}/>
+        </div>  
+    ) 
 }
