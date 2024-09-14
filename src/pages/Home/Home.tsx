@@ -18,7 +18,7 @@ export default function Home() {
             const collection = await getData({ url: 
                 value ? `${SEARCH_USERS_URL}?q=${value}` : USERS_ENDPOINT
             })
-            setUsers(users => collection.items ? collection.items : collection) // [...users, ...collection]
+            setUsers(collection.items ? collection.items : collection) // [...users, ...collection]
         }
 
         getUsers()

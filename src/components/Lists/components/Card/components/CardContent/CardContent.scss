@@ -1,0 +1,29 @@
+@use "../../../../../../styles/palette";
+
+.avatar {
+    border-radius: 50%;
+    border: palette.$gray solid 1px;
+    margin-bottom: 5px;
+    width: 150px;
+    margin-bottom: 15px;
+}
+
+.cardInfoContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+
+.login {
+    font-size: 18px;
+    color: palette.$orange;
+    margin-bottom: 2px;
+}
+
+.id {
+    color: palette.$strongGray;
+    font-size: 14px;
+}

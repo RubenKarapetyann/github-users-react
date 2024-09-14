@@ -1,5 +1,5 @@
 import { ProfileProps } from "../../../types/components/profile"
-import Star from "../../Lists/components/Card/components/Star/Star"
+import { Star } from "../../Lists"
 import * as styles from "./ProfileLayout.module.scss"
 
 const ProfileLayout = ({
