@@ -2,7 +2,7 @@
 @use "../../../../styles/palette";
 
 .searchHeaderContainer {
-    width: 100vw;
+    width: 100%;
     height: auto;
     @include mixins.flex();
     background-color: palette.$orange;

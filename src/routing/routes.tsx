@@ -2,6 +2,7 @@ import { RouteObject } from "react-router-dom"
 import Home from "../pages/Home/Home"
 import Favourite from "../pages/Favourite/Favourite"
 import Profile from "../pages/Profile/Profile"
+import { MainLayout, SearchLayout } from "../components/Layouts"
 
 const HOME: RouteObject = {
     path: "/",
@@ -18,6 +19,16 @@ const PROFILE: RouteObject = {
     element: <Profile/>
 }
 
-const ROUTES: RouteObject[] = [HOME, FAVOURITE, PROFILE]
+const ROUTES: RouteObject[] = [
+    {
+        element: <MainLayout/>,
+        children: [ PROFILE ]
+    },
+    {
+        element: <SearchLayout/>,
+        children: [ HOME, FAVOURITE ]
+    },
+    {}
+]
 
 export default ROUTES
