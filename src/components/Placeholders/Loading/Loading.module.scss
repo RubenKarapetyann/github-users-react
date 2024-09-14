@@ -1,0 +1,25 @@
+@use "../../../styles/palette";
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+}
+
+.circle {
+    animation: rotating 1.5s infinite;
+    color: palette.$strongGray;
+    font-size: 50px;
+}
+
+@keyframes rotating {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

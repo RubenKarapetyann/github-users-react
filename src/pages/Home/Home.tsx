@@ -7,6 +7,7 @@ import * as styles from "../../styles/styles.scss"
 import { useSearch } from "../../contexts/SearchContext/SearchContext";
 import useSearchDelay from "../../hooks/useSearchDelay";
 import { PAGINATION } from "../../constants/global";
+import Loading from "../../components/Placeholders/Loading/Loading";
 
 export default function Home() {
     const [users, setUsers] = useState<UserOfList[]>([])
@@ -46,7 +47,7 @@ export default function Home() {
     }
     
     if (!users.length){
-        return <div>loading...</div>
+        return <div><Loading/></div>
     }
 
     return (

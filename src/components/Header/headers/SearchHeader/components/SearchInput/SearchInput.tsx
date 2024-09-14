@@ -16,6 +16,7 @@ const SearchInput = () => {
             className={styles.searchInput}
             value={value}
             onChange={onChange}
+            placeholder="search for users..."
         />
     )
 }
