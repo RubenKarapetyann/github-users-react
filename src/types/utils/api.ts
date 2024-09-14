@@ -1,5 +1,5 @@
 export interface GetDataProps {
     url: string,
-    method: "GET" | "POST",
+    method?: "GET" | "POST",
     body?: Object
 }
