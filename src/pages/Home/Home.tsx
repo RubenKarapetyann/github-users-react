@@ -5,10 +5,12 @@ import getData from "../../utils/api/getData";
 import { SEARCH_USERS_URL, USERS_ENDPOINT } from "../../constants/api";
 import * as styles from "../../styles/styles.scss"
 import { useSearch } from "../../contexts/SearchContext/SearchContext";
+import useSearchDelay from "../../hooks/useSearchDelay";
 
 export default function Home() {
     const [users, setUsers] = useState<UserOfList[]>([])
     const search = useSearch()
+    const delayer = useSearchDelay()
 
     useEffect(() => {
         if (!search) return
@@ -21,8 +23,12 @@ export default function Home() {
             setUsers(collection.items ? collection.items : collection) // [...users, ...collection]
         }
 
-        getUsers()
+        delayer(getUsers)
     }, [search])
     
-    return <div className={styles.container}><UsersList users={users}/></div>
+    return (
+        <div className={styles.container}>
+            <UsersList users={users}/>
+        </div>
+    )
 }
