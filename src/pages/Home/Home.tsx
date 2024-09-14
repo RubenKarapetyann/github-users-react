@@ -3,7 +3,7 @@ import { UsersList } from "../../components/Lists";
 import { UserOfList } from "../../types/api/users";
 import getData from "../../utils/api/getData";
 import { USERS_ENDPOINT } from "../../constants/api";
-import * as styles from "./Home.module.scss"
+import * as styles from "../../styles/styles.scss"
 
 export default function Home() {
     const [users, setUsers] = useState<UserOfList[]>([])

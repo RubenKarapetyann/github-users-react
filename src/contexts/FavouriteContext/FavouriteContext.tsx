@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from "react"
+import { createContext, ReactNode, useContext, useState } from "react"
 import { FavouritehContextType } from "../../types/contexts/favouriteContext"
 import { UserOfList } from "../../types/api/users"
 
@@ -19,3 +19,5 @@ const FavouriteContextProvider = ({ children }: { children: ReactNode }) => {
 }
 
 export default FavouriteContextProvider
+
+export const useFavourite = () => useContext(FavouriteContext)
