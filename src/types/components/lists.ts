@@ -6,6 +6,10 @@ export interface UsersListProps {
     users: UserOfList[]
 }
 
+export interface InfinityUsersListProps extends UsersListProps {
+    scrollCallback: () => void
+}
+
 export interface StarProps {
     user: UserOfList
 }

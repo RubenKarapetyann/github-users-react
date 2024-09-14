@@ -21,7 +21,7 @@ export default function Favourite() {
             if (!search.value) {
                 return setUsers(users)
             }
-            setUsers(users.filter(user => new RegExp(search.value).test(user.login)))
+            setUsers(users.filter(user => new RegExp(search.value, "i").test(user.login)))
         }
         
         delayer(getUsers)

@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { UsersList } from "../../components/Lists";
+import { InfinityUsersList } from "../../components/Lists";
 import { UserOfList } from "../../types/api/users";
 import getData from "../../utils/api/getData";
 import { SEARCH_USERS_URL, USERS_ENDPOINT } from "../../constants/api";
 import * as styles from "../../styles/styles.scss"
 import { useSearch } from "../../contexts/SearchContext/SearchContext";
 import useSearchDelay from "../../hooks/useSearchDelay";
+import { PAGINATION } from "../../constants/global";
 
 export default function Home() {
     const [users, setUsers] = useState<UserOfList[]>([])
@@ -18,17 +19,39 @@ export default function Home() {
 
         const getUsers = async () => {
             const collection = await getData({ url: 
-                value ? `${SEARCH_USERS_URL}?q=${value}` : USERS_ENDPOINT
+                value ? `${SEARCH_USERS_URL}?q=${value}&per_page=${PAGINATION}` : `${USERS_ENDPOINT}?per_page=${PAGINATION}`
             })
-            setUsers(collection.items ? collection.items : collection) // [...users, ...collection]
+            setUsers(collection.items ? collection.items : collection)
         }
 
         delayer(getUsers)
     }, [search])
+
     
+    const loadMoreUsers = () => {
+        const page = Math.ceil(users.length / PAGINATION)
+
+        if (!search) return
+        const { value } = search
+
+        const getUsers = async () => {
+            const collection = await getData({ url: 
+                value ? 
+                `${SEARCH_USERS_URL}?q=${value}&per_page=${PAGINATION}&page=${page + 1}` : 
+                `${USERS_ENDPOINT}?per_page=${PAGINATION}&since=${users[users.length - 1].id}`
+            })
+            setUsers(users => [...users, ...(collection.items ? collection.items : collection)])
+        }
+        getUsers()
+    }
+    
+    if (!users.length){
+        return <div>loading...</div>
+    }
+
     return (
         <div className={styles.container}>
-            <UsersList users={users}/>
+            <InfinityUsersList users={users} scrollCallback={loadMoreUsers}/>
         </div>
     )
 }
