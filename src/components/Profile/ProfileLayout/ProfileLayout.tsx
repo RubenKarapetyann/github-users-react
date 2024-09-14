@@ -8,7 +8,7 @@ const ProfileLayout = ({
     <div className={styles.userProfileContainer}>
         <div>
             <img src={user.avatar_url} alt="avatar image" className={styles.avatar}/>
-            <Star active/>
+            <Star user={user}/>
         </div>
         <div className={styles.userInfoConatiner}>
             <div className={styles.userProfileNameContainer}>

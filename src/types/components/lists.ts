@@ -7,7 +7,7 @@ export interface UsersListProps {
 }
 
 export interface StarProps {
-    active: boolean
+    user: UserOfList
 }
 
 export interface RecomendedUsersProps {
