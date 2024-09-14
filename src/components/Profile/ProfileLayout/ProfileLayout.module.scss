@@ -1,0 +1,77 @@
+@use "../../../styles/palette";
+@use "../../../styles/mixins";
+
+.userProfileContainer {
+    width: 100%;
+    background-color: palette.$white;   
+    height: auto;
+    gap: 20px;
+    padding: 30px 0;
+    @include mixins.flex();
+
+    div {
+        display: flex;
+    }
+}
+
+.avatar {
+    border-radius: 50%;
+    width: 250px;
+}
+
+.userInfoConatiner {
+    width: auto;
+    height: auto;
+    flex-direction: column;
+}
+
+.userProfileNameContainer {
+    gap: 10px;
+    flex-direction: column;
+
+    h3 { 
+        color: palette.$orange;
+    }
+
+    p {
+        color: palette.$strongGray
+    }
+}
+
+.userFollowInfoContainer {
+    gap: 10px;
+    margin-bottom: 5px;
+
+    p {
+        font-weight: bold;
+    }
+
+    span {
+        color: palette.$strongGray
+    }
+}
+
+.bio {
+    color: palette.$strongGray
+}
+
+.breaker {
+    width: 100px;
+    height: 5px;
+    background-color: palette.$purple;
+    margin: 20px 0;
+}
+
+@media screen and (max-width: 600px) {
+    .userProfileContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .userInfoConatiner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
