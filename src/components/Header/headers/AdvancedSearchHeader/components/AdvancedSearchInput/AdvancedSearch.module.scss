@@ -1,0 +1,19 @@
+.advancedSearchInput {
+    width: 70px;
+    height: 30px;
+    border: 0;
+    padding: 5px;
+
+    &:focus {
+        outline: none;
+    } 
+}
+
+.advancedSearchInputContainer {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--white);
+    width: 200px;
+    justify-content: flex-end;
+}
