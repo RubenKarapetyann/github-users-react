@@ -1,11 +1,9 @@
 import { useAdvancedSearch } from "../../../../../../contexts/AdvancedSearchContext/AdvancedSearchContext"
-import useSearchDelay from "../../../../../../hooks/useSearchDelay"
 import { AdvancedSearchInputProps } from "../../../../../../types/components/header"
 import * as styles from "./AdvancedSearch.module.scss"
 
 const AdvancedSearchInput = ({ filter }: AdvancedSearchInputProps) => {
     const filters = useAdvancedSearch()
-    const delayer = useSearchDelay()
 
     if (!filters) return
 
@@ -15,15 +13,15 @@ const AdvancedSearchInput = ({ filter }: AdvancedSearchInputProps) => {
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.checkValidity()) {
-            delayer(() => changeFilter(filter, +e.target.value))
+            changeFilter(filter, +e.target.value)
         }
     }
 
     return (
         <div className={styles.advancedSearchInputContainer}>
             <label htmlFor={filter}>{filter}</label>
-            <input 
-                type="number" 
+            <input
+                type="number"
                 id={filter}
                 pattern="[0-9]*"
                 min={0}

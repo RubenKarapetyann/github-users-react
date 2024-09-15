@@ -8,39 +8,44 @@ import { useSearch } from "../../contexts/SearchContext/SearchContext";
 import useSearchDelay from "../../hooks/useSearchDelay";
 import { PAGINATION } from "../../constants/global";
 import { Loading } from "../../components/Placeholders";
+import { useAdvancedSearch } from "../../contexts/AdvancedSearchContext/AdvancedSearchContext";
 
 export default function Home() {
     const [users, setUsers] = useState<UserOfList[]>([])
     const search = useSearch()
+    const filters = useAdvancedSearch()
     const delayer = useSearchDelay()
 
     useEffect(() => {
-        if (!search) return
+        if (!search || !filters) return
         const { value } = search
+        const currentFilters = filters.filters
 
         const getUsers = async () => {
             const collection = await getData({ url: 
-                value ? `${SEARCH_USERS_URL}?q=${value}&per_page=${PAGINATION}` : `${USERS_ENDPOINT}?per_page=${PAGINATION}`
+                `${SEARCH_USERS_URL}?q=${value ? value + "+" : ""}repos:${currentFilters.minRep}..${currentFilters.maxRep}+followers:${currentFilters.minFollows}..${currentFilters.maxFollows}&per_page=${PAGINATION}`
             })
-            setUsers(collection.items ? collection.items : collection)
+            setUsers(collection.items)
         }
 
         delayer(getUsers)
-    }, [search])
+    }, [search, filters])
 
     
     const loadMoreUsers = () => {
         const page = Math.ceil(users.length / PAGINATION)
 
-        if (!search) return
+        if (!search || !filters) return
         const { value } = search
+        const currentFilters = filters.filters
 
         const getUsers = async () => {
             const collection = await getData({ url: 
-                value ? 
-                `${SEARCH_USERS_URL}?q=${value}&per_page=${PAGINATION}&page=${page + 1}` : 
-                `${USERS_ENDPOINT}?per_page=${PAGINATION}&since=${users[users.length - 1].id}`
+                `${SEARCH_USERS_URL}?q=${value ? value + "+" : ""}repos:${currentFilters.minRep}..${currentFilters.maxRep}+followers:${currentFilters.minFollows}..${currentFilters.maxFollows}&per_page=${PAGINATION}&page=${page + 1}`
             })
+
+            // `${SEARCH_USERS_URL}?q=${value}&per_page=${PAGINATION}&page=${page + 1}` : 
+            // `${USERS_ENDPOINT}?per_page=${PAGINATION}&since=${users[users.length - 1].id}`
             setUsers(users => [...users, ...(collection.items ? collection.items : collection)])
         }
         getUsers()
