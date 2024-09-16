@@ -1,22 +1,28 @@
 import { RouteObject } from "react-router-dom"
-import Home from "../pages/Home/Home"
-import Favourite from "../pages/Favourite/Favourite"
-import Profile from "../pages/Profile/Profile"
 import { AdvancedSearchLayout, MainLayout, SearchLayout } from "../components/Layouts"
 
 const HOME: RouteObject = {
     path: "/",
-    element: <Home/>,
+    async lazy() {
+        const { Home } = await import("../pages/index");
+        return { Component: Home };
+    }
 }
 
 const FAVOURITE: RouteObject = {
     path: "/favourite",
-    element: <Favourite/>,
+    async lazy() {
+        const { Favourite } = await import("../pages/index");
+        return { Component: Favourite };
+    }
 }
 
 const PROFILE: RouteObject = {
     path: "/users/:login",
-    element: <Profile/>
+    async lazy() {
+        const { Profile } = await import("../pages/index");
+        return { Component: Profile };
+    }
 }
 
 const ROUTES: RouteObject[] = [

@@ -2,6 +2,7 @@ import { CardProps } from "../../../../types/components/lists"
 import * as styles from "./Card.module.scss"
 import Star from "./components/Star/Star"
 import CardContent from "./components/CardContent/CardContent"
+import { memo } from "react"
 
 const Card = ({ login, avatar_url, id }: CardProps) => {
     return (
@@ -12,4 +13,4 @@ const Card = ({ login, avatar_url, id }: CardProps) => {
     )
 }
 
-export default Card
+export default memo(Card)

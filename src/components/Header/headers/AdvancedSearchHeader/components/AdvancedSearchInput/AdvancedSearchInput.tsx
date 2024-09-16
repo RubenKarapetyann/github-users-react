@@ -2,7 +2,7 @@ import { useAdvancedSearch } from "../../../../../../contexts/AdvancedSearchCont
 import { AdvancedSearchInputProps } from "../../../../../../types/components/header"
 import * as styles from "./AdvancedSearch.module.scss"
 
-const AdvancedSearchInput = ({ filter }: AdvancedSearchInputProps) => {
+const AdvancedSearchInput = ({ filter, label }: AdvancedSearchInputProps) => {
     const filters = useAdvancedSearch()
 
     if (!filters) return
@@ -19,7 +19,7 @@ const AdvancedSearchInput = ({ filter }: AdvancedSearchInputProps) => {
 
     return (
         <div className={styles.advancedSearchInputContainer}>
-            <label htmlFor={filter}>{filter}</label>
+            <label htmlFor={filter}>{label}</label>
             <input
                 type="number"
                 id={filter}

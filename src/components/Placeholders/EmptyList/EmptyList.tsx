@@ -1,3 +1,4 @@
+import { memo } from "react"
 import * as styles from "./EmptyList.module.scss"
 
 const EmptyList = () => (
@@ -6,4 +7,4 @@ const EmptyList = () => (
     </div>
 )
 
-export default EmptyList
+export default memo(EmptyList)

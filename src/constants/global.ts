@@ -1,1 +1,1 @@
-export const PAGINATION = 15
+export const PAGINATION = 9

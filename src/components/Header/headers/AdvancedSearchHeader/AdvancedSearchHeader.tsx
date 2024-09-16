@@ -7,8 +7,9 @@ const AdvancedSearchHeader = () => (
         <div className={styles.advancedSearchContainer}>
             {FILTERS.map(filter => (
                 <AdvancedSearchInput
-                    filter={filter}
-                    key={filter}
+                    filter={filter.name}
+                    key={filter.id}
+                    label={filter.displayName}
                 />
             ))}
         </div>

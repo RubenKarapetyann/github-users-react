@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { InfinityUsersList } from "../../components/Lists";
 import { UserOfList } from "../../types/api/users";
 import getData from "../../utils/api/getData";
-import { SEARCH_USERS_URL, USERS_ENDPOINT } from "../../constants/api";
+import { SEARCH_USERS_URL } from "../../constants/api";
 import * as styles from "../../styles/styles.scss"
 import { useSearch } from "../../contexts/SearchContext/SearchContext";
 import useSearchDelay from "../../hooks/useSearchDelay";
@@ -25,7 +25,7 @@ export default function Home() {
             const collection = await getData({ url: 
                 `${SEARCH_USERS_URL}?q=${value ? value + "+" : ""}repos:${currentFilters.minRep}..${currentFilters.maxRep}+followers:${currentFilters.minFollows}..${currentFilters.maxFollows}&per_page=${PAGINATION}`
             })
-            setUsers(collection.items)
+            setUsers(collection.items || [])
         }
 
         delayer(getUsers)
