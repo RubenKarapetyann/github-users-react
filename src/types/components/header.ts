@@ -8,10 +8,13 @@ export type FilterTypes = "minRep" | "maxRep" | "maxFollows" | "minFollows"
 export interface FilterObject {
     name: FilterTypes,
     displayName: string,
-    id: number
+    id: number,
+    initialValue: number
 }
 
 export interface AdvancedSearchInputProps {
     filter: FilterTypes,
-    label: string
+    label: string,
+    initialValue: string,
+    changeHandle: (filter: FilterTypes, value: string) => void 
 }

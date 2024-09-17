@@ -1,19 +1,14 @@
-import { useAdvancedSearch } from "../../../../../../contexts/AdvancedSearchContext/AdvancedSearchContext"
+import { memo, useState } from "react"
 import { AdvancedSearchInputProps } from "../../../../../../types/components/header"
 import * as styles from "./AdvancedSearch.module.scss"
 
-const AdvancedSearchInput = ({ filter, label }: AdvancedSearchInputProps) => {
-    const filters = useAdvancedSearch()
-
-    if (!filters) return
-
-    const currentFilter = filters.filters[filter]
-    const changeFilter = filters.changeFilter
-
+const AdvancedSearchInput = ({ filter, label, initialValue, changeHandle }: AdvancedSearchInputProps) => {
+    const [value, setValue] = useState(initialValue)
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.checkValidity()) {
-            changeFilter(filter, +e.target.value)
+        setValue(e.target.value)
+        if (e.target.checkValidity() && +e.target.value !== +value) {            
+            changeHandle(filter, e.target.value)
         }
     }
 
@@ -28,10 +23,10 @@ const AdvancedSearchInput = ({ filter, label }: AdvancedSearchInputProps) => {
                 max={999999}
                 className={styles.advancedSearchInput}
                 onChange={onChange}
-                value={currentFilter}
+                value={value}
             />
         </div>
     )
 }
 
-export default AdvancedSearchInput
+export default memo(AdvancedSearchInput)

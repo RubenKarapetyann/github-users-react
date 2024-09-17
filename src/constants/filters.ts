@@ -1,29 +1,45 @@
 import { FilterObject, FilterTypes } from "../types/components/header"
 
+export const MIN_REP = "minRep"
 const minRep: FilterObject = {
     displayName: "min repos",
     id: 1,
-    name: "minRep"
+    name: MIN_REP,
+    initialValue: 0
 }
 
+export const MAX_REP = "maxRep"
 const maxRep: FilterObject = {
     displayName: "max repos",
     id: 2,
-    name: "maxRep"
+    name: MAX_REP,
+    initialValue: 10000
+
 }
 
+export const MIN_FOLLOWS = "minFollows"
 const minFollows: FilterObject = {
     displayName: "min follows",
     id: 3,
-    name: "minFollows"
+    name: MIN_FOLLOWS,
+    initialValue: 0
 }
 
-const maxFollows: FilterObject  = {
+export const MAX_FOLLOWS = "maxFollows"
+const maxFollows: FilterObject = {
     displayName: "max follows",
     id: 4,
-    name: "maxFollows"
+    name: MAX_FOLLOWS,
+    initialValue: 1000000
 }
 
 
 const FILTERS: FilterObject[] = [minRep, maxRep, minFollows, maxFollows]
 export default FILTERS
+
+export const FILTERS_MAP = {
+    [MIN_REP]: minRep,
+    [MAX_REP]: maxRep,
+    [MIN_FOLLOWS]: minFollows,
+    [MAX_FOLLOWS]: maxFollows
+}

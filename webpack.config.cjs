@@ -35,13 +35,12 @@ module.exports = {
     output: {
         filename: 'bundle.js',
         path: path.resolve('dist'),
+        publicPath: "/"
     },
     mode: "development",
     devServer: {
         port: 3000,
-        historyApiFallback: {
-            index: './public/index.html'
-        },
+        historyApiFallback: true,
         hot: true,
         open: true,
         static: {
