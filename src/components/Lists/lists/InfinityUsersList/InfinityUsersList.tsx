@@ -3,7 +3,7 @@ import { InfinityUsersListProps } from "../../../../types/components/lists"
 import Card from "../../components/Card/Card"
 import * as styles from "../UsersList/UsersList.module.scss"
 
-const InfinityUsersList = ({ users, scrollCallback }: InfinityUsersListProps) => {
+const InfinityUsersList = ({ users, scrollCallback, next }: InfinityUsersListProps) => {
     const lastCardRef = useRef<HTMLSpanElement | null>(null)
 
     useEffect(() => {
@@ -18,7 +18,7 @@ const InfinityUsersList = ({ users, scrollCallback }: InfinityUsersListProps) =>
         }, { threshold: [0.1, 1] })
     
     
-        if (lastCardRef.current){
+        if (lastCardRef.current && next){
             observer.observe(lastCardRef.current)
         }
         

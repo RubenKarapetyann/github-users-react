@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { InfinityUsersList } from "../../components/Lists";
 import { UserOfList } from "../../types/api/users";
 import getData from "../../utils/api/getData";
@@ -12,6 +12,7 @@ import { useAdvancedSearch } from "../../contexts/AdvancedSearchContext/Advanced
 
 export default function Home() {
     const [users, setUsers] = useState<UserOfList[]>([])
+    const maxUsersCount = useRef<number>(0)
     const search = useSearch()
     const filters = useAdvancedSearch()
     const delayer = useSearchDelay()
@@ -26,6 +27,7 @@ export default function Home() {
                 `${SEARCH_USERS_URL}?q=${value ? value + "+" : ""}repos:${currentFilters.minRep}..${currentFilters.maxRep}+followers:${currentFilters.minFollows}..${currentFilters.maxFollows}&per_page=${PAGINATION}`
             })
             setUsers(collection.items || [])
+            maxUsersCount.current = collection.total_count || 0
         }
 
         delayer(getUsers)
@@ -57,7 +59,7 @@ export default function Home() {
 
     return (
         <div className={styles.container}>
-            <InfinityUsersList users={users} scrollCallback={loadMoreUsers}/>
+            <InfinityUsersList users={users} scrollCallback={loadMoreUsers} next={maxUsersCount.current - users.length > 0}/>
         </div>
     )
 }

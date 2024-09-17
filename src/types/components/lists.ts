@@ -7,7 +7,8 @@ export interface UsersListProps {
 }
 
 export interface InfinityUsersListProps extends UsersListProps {
-    scrollCallback: () => void
+    scrollCallback: () => void,
+    next: boolean
 }
 
 export interface StarProps {
