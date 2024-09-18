@@ -13,8 +13,7 @@ const maxRep: FilterObject = {
     displayName: "max repos",
     id: 2,
     name: MAX_REP,
-    initialValue: 10000
-
+    initialValue: 1000000
 }
 
 export const MIN_FOLLOWS = "minFollows"

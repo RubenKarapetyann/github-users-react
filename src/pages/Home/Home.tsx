@@ -24,7 +24,7 @@ export default function Home() {
 
         const getUsers = async () => {
             const collection = await getData({ url: 
-                `${SEARCH_USERS_URL}?q=${value ? value + "+" : ""}repos:${currentFilters.minRep}..${currentFilters.maxRep}+followers:${currentFilters.minFollows}..${currentFilters.maxFollows}&per_page=${PAGINATION}`
+                `${SEARCH_USERS_URL}?q=${value ? value : "a" /* for avoiding github api bug (will explain) */ }+repos:${currentFilters.minRep}..${currentFilters.maxRep}+followers:${currentFilters.minFollows}..${currentFilters.maxFollows}&per_page=${PAGINATION}&sort=joined&order=asc`
             })
             setUsers(collection.items || [])
             maxUsersCount.current = collection.total_count || 0
@@ -43,7 +43,7 @@ export default function Home() {
 
         const getUsers = async () => {
             const collection = await getData({ url: 
-                `${SEARCH_USERS_URL}?q=${value ? value + "+" : ""}repos:${currentFilters.minRep}..${currentFilters.maxRep}+followers:${currentFilters.minFollows}..${currentFilters.maxFollows}&per_page=${PAGINATION}&page=${page + 1}`
+                `${SEARCH_USERS_URL}?q=${value ? value : "a" /* for avoiding github api bug (will explain) */ }+repos:${currentFilters.minRep}..${currentFilters.maxRep}+followers:${currentFilters.minFollows}..${currentFilters.maxFollows}&per_page=${PAGINATION}&page=${page + 1}&sort=joined&order=asc`
             })
 
             // `${SEARCH_USERS_URL}?q=${value}&per_page=${PAGINATION}&page=${page + 1}` : 
