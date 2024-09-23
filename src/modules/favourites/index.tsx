@@ -7,7 +7,7 @@ const FavouriteLazy = lazy(() => import("./components"))
 const FavouriteRouter = () => (        
     <Routes>
         <Route         
-            path="favourites"
+            path="favourite"
             element={<SearchLayout/>}
         >
             <Route index element={<FavouriteLazy/>}/>

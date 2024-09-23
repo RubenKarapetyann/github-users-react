@@ -1,14 +1,16 @@
-import { useSearch } from "../../../../contexts/SearchContext/SearchContext"
+import { useNavigate } from "react-router-dom"
 import * as styles from "./SearchInput.module.scss"
+import { useState } from "react"
+import { useSearchDelay } from "../../hooks"
 
 const SearchInput = () => {
-    const search = useSearch()
-    if(!search) return
-
-    const { value, changeValue } = search
+    const navigate = useNavigate()
+    const [value, setValue] = useState<string>("")
+    const delayer = useSearchDelay()
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        changeValue(e.target.value)
+        setValue(e.target.value)
+        delayer(() => navigate(`${location.pathname}?q=${e.target.value}`))
     }
 
     return (

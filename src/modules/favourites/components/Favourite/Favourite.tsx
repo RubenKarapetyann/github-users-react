@@ -2,23 +2,21 @@ import { useEffect, useState } from "react";
 import * as styles from "../../../../styles/styles.scss"
 import { PAGINATION } from "../../../common/constants/api";
 import EmptyList from "../EmptyList/EmptyList";
-import { useSearchDelay } from "../../../common/hooks";
-import { useSearch } from "../../../../contexts/SearchContext/SearchContext";
 import { UserOfList } from "../../../common/types/users";
 import { useFavourite } from "../../../../contexts/FavouriteContext/FavouriteContext";
 import { InfinityUsersList } from "../../../common/components";
+import { useSearchParams } from "react-router-dom";
 
 export default function Favourite() {
     const [users, setUsers] = useState<UserOfList[]>([])
     const favourite = useFavourite()
-    const search = useSearch()
-    const delayer = useSearchDelay()
-
+    const [ params ] = useSearchParams()    
+    const search = params.get("q")
 
     const addMoreUsers = () => {
         const page = Math.ceil(users.length / PAGINATION)
 
-        if (!search || !favourite) {
+        if (!favourite) {
             return
         }
 
@@ -26,27 +24,27 @@ export default function Favourite() {
 
         const { users: favouriteUsers } = favourite
 
-        if (!search.value) {
+        if (!search) {
             tempUsers = [...users, ...favouriteUsers.slice(page * PAGINATION, page * PAGINATION + PAGINATION)]
         } else {
-            tempUsers = [...users, ...favouriteUsers.filter(user => new RegExp(search.value, "i").test(user.login)).slice(page * PAGINATION, page * PAGINATION + PAGINATION)]
+            tempUsers = [...users, ...favouriteUsers.filter(user => new RegExp(search, "i").test(user.login)).slice(page * PAGINATION, page * PAGINATION + PAGINATION)]
         }
         setUsers(tempUsers)
     }
 
     useEffect(() => {
         const getUsers = () => {
-            if (!favourite || !search) return
+            if (!favourite) return
             const { users } = favourite
     
-            if (!search.value) {
+            if (!search) {
                 return setUsers(users.slice(0, PAGINATION))
             }
                 // Remove duplications (filter, test, slice)
-            setUsers(users.filter(user => new RegExp(search.value, "i").test(user.login)).slice(0, PAGINATION))
+            setUsers(users.filter(user => new RegExp(search, "i").test(user.login)).slice(0, PAGINATION))
         }
         
-        delayer(getUsers)
+        getUsers()
     }, [search, favourite])
 
     return (
