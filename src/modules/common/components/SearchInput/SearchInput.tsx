@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom"
 import * as styles from "./SearchInput.module.scss"
 import { useState } from "react"
-import { useSearchDelay } from "../../hooks"
+import { useDebounce } from "../../hooks"
 
 const SearchInput = () => {
     const navigate = useNavigate()
     const [value, setValue] = useState<string>("")
-    const delayer = useSearchDelay()
+    const debounce = useDebounce()
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value)
@@ -18,7 +18,7 @@ const SearchInput = () => {
             url.searchParams.delete("q")
         }
                 
-        delayer(() => navigate(url.pathname + url.search))
+        debounce(() => navigate(url.pathname + url.search))
     }
 
     return (

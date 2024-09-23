@@ -2,13 +2,13 @@ import { useState } from "react"
 import * as styles from "./AdvancedSearch.module.scss"
 import { IAdvancedSearchInputProps } from "../../types/header"
 import { useNavigate } from "react-router-dom"
-import { useSearchDelay } from "../../hooks"
+import { useDebounce } from "../../hooks"
 
 
 const AdvancedSearchInput = ({ filter, label, initialValue }: IAdvancedSearchInputProps) => {
     const [value, setValue] = useState(initialValue)
     const navigate = useNavigate()
-    const delayer = useSearchDelay()
+    const debounce = useDebounce()
     
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value)
@@ -22,7 +22,7 @@ const AdvancedSearchInput = ({ filter, label, initialValue }: IAdvancedSearchInp
                 url.searchParams.delete(filter)
             }
 
-            delayer(() => navigate(url.pathname + url.search))      
+            debounce(() => navigate(url.pathname + url.search))      
         }
     }
 

@@ -1,5 +1,5 @@
-import useSearchDelay from "./useSearchDelay";
+import useDebounce from "./useDebounce";
 
 export {
-    useSearchDelay
+    useDebounce
 }

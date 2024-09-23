@@ -1,7 +1,6 @@
 import { useRef } from "react";
 
-//deounce
-const useSearchDelay = () => {
+const useDebounce = () => {
     const timeoutId = useRef<number | null>(null)
     
     return (callback: () => void) => {   
@@ -12,4 +11,4 @@ const useSearchDelay = () => {
     }
 }
 
-export default useSearchDelay
+export default useDebounce

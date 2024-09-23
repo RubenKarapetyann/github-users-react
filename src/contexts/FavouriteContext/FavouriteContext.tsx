@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useContext, useState } from "react"
-import { FavouritehContextType } from "../../types/contexts/favouriteContext"
 import { UserOfList } from "../../modules/common/types/users"
 import { addUserToFavourites, getFavouriteUsers, removeUserFromFavourites } from "../../modules/favourites/services"
+import { FavouritehContextType } from "./types"
 
 const FavouriteContext = createContext<FavouritehContextType | null>(null)
 
