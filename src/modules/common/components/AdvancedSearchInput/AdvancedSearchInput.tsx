@@ -1,35 +1,28 @@
-import { memo, useState } from "react"
+import { useState } from "react"
 import * as styles from "./AdvancedSearch.module.scss"
 import { IAdvancedSearchInputProps } from "../../types/header"
+import { useNavigate } from "react-router-dom"
+import { useSearchDelay } from "../../hooks"
 
-// structure
- // APP.tsx (all general routs) , users/asf => Profile, users => Users, advaced => Advanced
- // modules
-   // users (or home, or /)
-     // components
-       // FirstCompoent
-         // FirstCompoent.module.scss
-         // index.ts export {FirstComponent as defaut} from "./FirstCompoent.tsx"
-         // FirstCompoent.tsx
-         // types.ts ????
-     // reqestService
-     // hooks
-     // index.tsx (routes)
-     // types.ts (IUser, IUserList)
-   // profile
-   // favorites
-   // advanced
-   // common
-     // components
-     
 
-const AdvancedSearchInput = ({ filter, label, initialValue, changeHandle }: IAdvancedSearchInputProps) => {
+const AdvancedSearchInput = ({ filter, label, initialValue }: IAdvancedSearchInputProps) => {
     const [value, setValue] = useState(initialValue)
+    const navigate = useNavigate()
+    const delayer = useSearchDelay()
     
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value)
-        if (e.target.checkValidity() && +e.target.value !== +value) {            
-            changeHandle(filter, e.target.value)
+        if (e.target.checkValidity() && +e.target.value !== +value) {       
+            const url = new URL(location.href)
+            url.searchParams.set(filter, e.target.value)
+
+            if (e.target.value) {
+                url.searchParams.set(filter, e.target.value)
+            } else {
+                url.searchParams.delete(filter)
+            }
+
+            delayer(() => navigate(url.pathname + url.search))      
         }
     }
 
@@ -50,4 +43,4 @@ const AdvancedSearchInput = ({ filter, label, initialValue, changeHandle }: IAdv
     )
 }
 
-export default memo(AdvancedSearchInput)
+export default AdvancedSearchInput

@@ -10,7 +10,15 @@ const SearchInput = () => {
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value)
-        delayer(() => navigate(`${location.pathname}?q=${e.target.value}`))
+        const url = new URL(location.href)
+
+        if (e.target.value) {
+            url.searchParams.set("q", e.target.value)
+        } else {
+            url.searchParams.delete("q")
+        }
+                
+        delayer(() => navigate(url.pathname + url.search))
     }
 
     return (

@@ -16,7 +16,6 @@ export interface IAdvancedSearchInputProps {
     filter: FilterTypes,
     label: string,
     initialValue: string,
-    changeHandle: (filter: FilterTypes, value: string) => void 
 }
 
 export interface HeaderItem {
