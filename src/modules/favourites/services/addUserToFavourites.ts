@@ -10,6 +10,7 @@ const addUserToFavourites = (user: UserOfList) => {
         return newUsers
     } catch (err) {
         console.log(err)
+        return []
     }
 }
 

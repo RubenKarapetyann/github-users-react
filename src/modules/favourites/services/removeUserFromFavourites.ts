@@ -9,6 +9,7 @@ const removeUserFromFavourites = (id: number) => {
         return newUsers
     } catch (err) {
         console.log(err)
+        return []
     }
 }
 
