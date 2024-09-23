@@ -1,6 +1,6 @@
 import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import AdvancedSearchLayout from "./AdvancedSearchLayout";
+import Layout from "./Layout";
 
 const HomeLazy = lazy(() => import("./components"))
 
@@ -8,7 +8,7 @@ const HomeRouter = () => (
     <Routes>
         <Route 
             path="/"
-            element={<AdvancedSearchLayout/>}
+            element={<Layout/>}
         >
             <Route index element={<HomeLazy/>}/>
         </Route>

@@ -1,6 +1,6 @@
 import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import SearchLayout from "./SearchLayout";
+import Layout from "./Layout";
 
 const FavouriteLazy = lazy(() => import("./components"))
 
@@ -8,7 +8,7 @@ const FavouriteRouter = () => (
     <Routes>
         <Route         
             path="favourite"
-            element={<SearchLayout/>}
+            element={<Layout/>}
         >
             <Route index element={<FavouriteLazy/>}/>
         </Route>  

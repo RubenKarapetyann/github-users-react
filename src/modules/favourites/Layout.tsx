@@ -1,12 +1,13 @@
 import { Outlet } from "react-router-dom"
-import { NavBar } from "../common/components"
+import { NavBar, SearchHeader } from "../common/components"
 
-const MainLayout = () => (
+const Layout = () => (
     <>
         <NavBar/>
+        <SearchHeader/>
         <Outlet/>
         {/* can be footer or smth else */}
     </>
 )
 
-export default MainLayout
+export default Layout

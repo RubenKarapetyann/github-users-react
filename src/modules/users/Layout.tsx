@@ -1,15 +1,14 @@
 import { Outlet } from "react-router-dom"
 import { AdvancedSearchHeader, NavBar, SearchHeader } from "../common/components"
 
-const AdvancedSearchLayout = () => (
+const Layout = () => (
     <>
         <NavBar/>
         <SearchHeader>
             <AdvancedSearchHeader/>
         </SearchHeader>
         <Outlet/>
-        {/* can be footer or smth else */}
     </>
 )
 
-export default AdvancedSearchLayout
+export default Layout
