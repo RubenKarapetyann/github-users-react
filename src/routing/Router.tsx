@@ -1,8 +1,14 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import ROUTES from "./routes"
+import { BrowserRouter } from "react-router-dom"
+import HomeRouter from "../modules/users"
+import FavouriteRouter from "../modules/favourites"
+import ProfileRouter from "../modules/profile"
 
-const router = createBrowserRouter(ROUTES)
-
-const Router = () => <RouterProvider router={router}/>
+const Router = () => (
+    <BrowserRouter>
+        <HomeRouter/>
+        <FavouriteRouter/>
+        <ProfileRouter/>
+    </BrowserRouter>
+)
 
 export default Router

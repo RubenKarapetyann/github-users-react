@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 import { AdvancedSearchContextType, Filters } from "../../types/contexts/advancedSearchContext";
-import { FILTERS_MAP, MAX_FOLLOWS, MAX_REP, MIN_FOLLOWS, MIN_REP } from "../../constants/filters";
+import { FILTERS_MAP, MAX_FOLLOWS, MAX_REP, MIN_FOLLOWS, MIN_REP } from "../../modules/common/constants/filters";
 
 const AdvancedSearchContext = createContext<AdvancedSearchContextType | null>(null)
 

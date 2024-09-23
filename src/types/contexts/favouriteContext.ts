@@ -1,4 +1,4 @@
-import { UserOfList } from "../api/users";
+import { UserOfList } from "../../modules/common/types/users";
 
 export interface FavouritehContextType {
     users: UserOfList[],
