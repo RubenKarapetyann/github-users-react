@@ -35,10 +35,3 @@ const maxFollows: FilterObject = {
 
 const FILTERS: FilterObject[] = [minRep, maxRep, minFollows, maxFollows]
 export default FILTERS
-
-export const FILTERS_MAP = {
-    [MIN_REP]: minRep,
-    [MAX_REP]: maxRep,
-    [MIN_FOLLOWS]: minFollows,
-    [MAX_FOLLOWS]: maxFollows
-}
