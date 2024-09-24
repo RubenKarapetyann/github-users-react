@@ -1,4 +1,4 @@
-import { UserOfList } from "../../common/types/users";
+import { UserOfList } from "../../../common/types/users";
 
 export interface UsersContextType {
     users: UserOfList[],

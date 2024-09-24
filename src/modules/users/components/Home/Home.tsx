@@ -3,7 +3,6 @@ import { InfinityUsersList, Loading } from "../../../common/components";
 import { removeUserFromFavourites } from "../../../favourites/services";
 import { useUsers } from "../../contexts/UsersContext";
 
-
 export default function Home() {
     const usersContext = useUsers()
     if (!usersContext) {

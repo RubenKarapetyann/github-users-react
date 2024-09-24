@@ -2,21 +2,19 @@ import { createContext, ReactNode, useContext, useEffect, useState } from "react
 import { getFavouriteUsers, removeUserFromFavourites } from "../../services"
 import { FavouritehContextType } from "./types"
 import { UserOfList } from "../../../common/types/users"
-import { useSearchParams } from "react-router-dom"
 import { PAGINATION } from "../../../common/constants/api"
+import { useSearchAndFilters } from "../../../common/hooks"
 
 const FavouriteContext = createContext<FavouritehContextType | null>(null)
 
 const FavouriteContextProvider = ({ children }: { children: ReactNode }) => {
     const [users, setUsers] = useState<UserOfList[]>([])
+    const { search } = useSearchAndFilters()
 
     const removeUser = (id: number) => {
         setUsers(users.filter(user => user.id !== id))
         removeUserFromFavourites(id)
     }
-
-    const [ params ] = useSearchParams()
-    const search = params.get("q")
 
     const addMoreUsers = () => {
         const page = Math.ceil(users.length / PAGINATION)

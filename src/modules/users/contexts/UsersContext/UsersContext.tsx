@@ -1,10 +1,9 @@
 import { createContext, useContext, useState, PropsWithChildren, useRef, useEffect } from "react"
 import { UsersContextType } from "./types"
-import { UserOfList } from "../../common/types/users"
-import { useSearchParams } from "react-router-dom"
-import FILTERS from "../../common/constants/filters"
-import { PAGINATION, SEARCH_USERS_URL } from "../../common/constants/api"
-import { buildUrl, getData } from "../../common/services"
+import { UserOfList } from "../../../common/types/users"
+import { PAGINATION, SEARCH_USERS_URL } from "../../../common/constants/api"
+import { buildUrl, getData } from "../../../common/services"
+import { useSearchAndFilters } from "../../../common/hooks"
 
 const UsersContext = createContext<UsersContextType | null>(null)
 
@@ -13,14 +12,7 @@ const UsersContextProvider = ({ children }: PropsWithChildren) => {
     const [error, setError] = useState<null | string>(null)
     const [loading, setLoading] = useState<boolean>(false)
     const maxUsersCount = useRef<number>(0)
-
-    const [ params ] = useSearchParams()
-
-    const search = params.get("q")
-    const currentFilters: Record<string, string> = {}
-    FILTERS.map(filter => {
-        currentFilters[filter.name] = params.get(filter.name) || filter.initialValue.toString()
-    })
+    const { filters, search } = useSearchAndFilters()
     
 
     const loadUsers = async () => {
@@ -29,7 +21,7 @@ const UsersContextProvider = ({ children }: PropsWithChildren) => {
             buildUrl({ 
                 url: SEARCH_USERS_URL, 
                 search, 
-                filters: currentFilters,
+                filters,
                 perPage: PAGINATION,
                 sort: true,
                 page
@@ -61,7 +53,7 @@ const UsersContextProvider = ({ children }: PropsWithChildren) => {
         }
 
         getUsers()
-    }, [params])
+    }, [search, filters])
 
     const next = maxUsersCount.current - users.length > 0
     return (
