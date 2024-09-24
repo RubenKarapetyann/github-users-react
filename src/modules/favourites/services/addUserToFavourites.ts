@@ -3,7 +3,7 @@ import getFavouriteUsers from "./getFavouriteUsers"
 
 const addUserToFavourites = (user: UserOfList) => {
     try {
-        const users = getFavouriteUsers()
+        const users = getFavouriteUsers({})
         const newUsers = [...users, user]
 
         localStorage.setItem("favourites", JSON.stringify(newUsers))

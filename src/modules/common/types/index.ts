@@ -1,6 +1,10 @@
 import { UserOfList } from "./users"
 
-export interface ICardProps extends UserOfList {}
+type onDeactiveStarType = (id: number) => void
+
+export interface ICardProps extends UserOfList {
+    onDeactiveStar: onDeactiveStarType
+}
 
 export interface ICardContextProps extends UserOfList {}
 
@@ -10,7 +14,10 @@ export interface IUsersListProps {
 
 export interface IInfinityUsersListProps extends IUsersListProps {
     scrollCallback: () => void,
-    next: boolean
+    next: boolean,
+    onDeactiveStar: onDeactiveStarType
 }
 
-export interface IStarProps extends UserOfList {}
+export interface IStarProps extends UserOfList {
+    onDeactiveStar: onDeactiveStarType
+}

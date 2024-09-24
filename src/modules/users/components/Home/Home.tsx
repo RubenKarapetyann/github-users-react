@@ -1,5 +1,6 @@
 import * as styles from "../../../../styles/styles.scss"
 import { InfinityUsersList, Loading } from "../../../common/components";
+import { removeUserFromFavourites } from "../../../favourites/services";
 import { useUsers } from "../../contexts/UsersContext";
 
 
@@ -21,7 +22,12 @@ export default function Home() {
 
     return (
         <div className={styles.container}>
-            <InfinityUsersList users={users} scrollCallback={loadMoreUsers} next={next}/>
+            <InfinityUsersList 
+                users={users} 
+                scrollCallback={loadMoreUsers} 
+                next={next}
+                onDeactiveStar={(id: number) => removeUserFromFavourites(id)}
+            />
         </div>
     )
 }

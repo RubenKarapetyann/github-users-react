@@ -3,7 +3,7 @@ import Card from "../../components/Card/Card"
 import * as styles from "../../../profile/components/UsersList/UsersList.module.scss"
 import { IInfinityUsersListProps } from "../../types"
 
-const InfinityUsersList = ({ users, scrollCallback, next }: IInfinityUsersListProps) => {
+const InfinityUsersList = ({ users, scrollCallback, next, onDeactiveStar }: IInfinityUsersListProps) => {
     const lastCardRef = useRef<HTMLSpanElement | null>(null)
 
     useEffect(() => {
@@ -37,6 +37,7 @@ const InfinityUsersList = ({ users, scrollCallback, next }: IInfinityUsersListPr
                         login={user.login}
                         id={user.id}
                         avatar_url={user.avatar_url}
+                        onDeactiveStar={onDeactiveStar}
                     />
                 </span>
             ))}

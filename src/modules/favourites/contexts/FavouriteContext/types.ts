@@ -2,6 +2,7 @@ import { UserOfList } from "../../../common/types/users";
 
 export interface FavouritehContextType {
     users: UserOfList[],
-    addUser: (user: UserOfList) => void,
-    removeUser: (id: number) => void
+    removeUser: (id: number) => void,
+    addMoreUsers: () => void,
+    next: boolean
 }

@@ -1,4 +1,5 @@
 import { Star } from "../../../common/components"
+import { removeUserFromFavourites } from "../../../favourites/services"
 import { IProfileLayoutProps } from "../../types"
 import * as styles from "./ProfileLayout.module.scss"
 
@@ -14,7 +15,7 @@ const ProfileLayout = ({
     <div className={styles.userProfileContainer}>
         <div>
             <img src={avatar_url} alt="avatar image" className={styles.avatar}/>
-            <Star login={login} avatar_url={avatar_url} id={id}/>
+            <Star login={login} avatar_url={avatar_url} id={id} onDeactiveStar={(id: number) => removeUserFromFavourites(id)}/>
         </div>
         <div className={styles.userInfoConatiner}>
             <div className={styles.userProfileNameContainer}>

@@ -3,17 +3,14 @@ import * as styles from "./Star.module.scss"
 import { useEffect, useState } from "react"
 import { IStarProps } from "../../types"
 import { PALETTE } from "../../constants/palette"
-import { useFavourite } from "../../../favourites/contexts/FavouriteContext"
+import { addUserToFavourites, getFavouriteUsers } from "../../../favourites/services"
 
 
-const Star = ({ avatar_url, id, login }: IStarProps) => {
+const Star = ({ avatar_url, id, login, onDeactiveStar }: IStarProps) => {
     const [active, setActive] = useState<boolean>(false)
-    const favourites = useFavourite()
+    const users = getFavouriteUsers({})
 
     useEffect(() => {
-        if (!favourites) return
-        const { users } = favourites
-
         const currentUser = users.find(favourite => favourite.id === id)
         if (!currentUser) return
 
@@ -21,13 +18,10 @@ const Star = ({ avatar_url, id, login }: IStarProps) => {
     }, [])
 
     const onClick = () => {
-        if (!favourites) return
-        const { addUser, removeUser } = favourites
-
         if (active) {
-            removeUser(id)
+            onDeactiveStar(id)
         } else {
-            addUser({id, login, avatar_url})
+            addUserToFavourites({id, login, avatar_url})
         }
         setActive(status => !status)
     }

@@ -1,19 +1,47 @@
-import { createContext, PropsWithChildren, useContext, useState } from "react"
+import { createContext, ReactNode, useContext, useEffect, useState } from "react"
+import { getFavouriteUsers, removeUserFromFavourites } from "../../services"
 import { FavouritehContextType } from "./types"
-import { addUserToFavourites, getFavouriteUsers, removeUserFromFavourites } from "../../services"
 import { UserOfList } from "../../../common/types/users"
+import { useSearchParams } from "react-router-dom"
+import { PAGINATION } from "../../../common/constants/api"
 
 const FavouriteContext = createContext<FavouritehContextType | null>(null)
 
-const FavouriteContextProvider = ({ children }: PropsWithChildren) => {
-    const [users, setUsers] = useState<UserOfList[]>(getFavouriteUsers())
+const FavouriteContextProvider = ({ children }: { children: ReactNode }) => {
+    const [users, setUsers] = useState<UserOfList[]>([])
 
-    const addUser = (user: UserOfList) => setUsers(addUserToFavourites(user))
+    const removeUser = (id: number) => {
+        setUsers(users.filter(user => user.id !== id))
+        removeUserFromFavourites(id)
+    }
 
-    const removeUser = (id: number) => setUsers(removeUserFromFavourites(id))
+    const [ params ] = useSearchParams()
+    const search = params.get("q")
 
+    const addMoreUsers = () => {
+        const page = Math.ceil(users.length / PAGINATION)
+
+        let tempUsers = []
+
+        if (!search) {
+            tempUsers = [...users, ...getFavouriteUsers({ page })]
+        } else {
+            tempUsers = [...users, ...getFavouriteUsers({ page, search })]
+        }
+        setUsers(tempUsers)
+    }
+
+    useEffect(() => {
+        if (!search) {
+            setUsers(getFavouriteUsers({ page: 0 }))
+            return
+        }
+        setUsers(getFavouriteUsers({ search, page: 0 }))
+    }, [search])
+
+    const next = getFavouriteUsers({}).length - users.length > 0    
     return (
-        <FavouriteContext.Provider value={{ users, addUser, removeUser }}>
+        <FavouriteContext.Provider value={{ users, removeUser, addMoreUsers, next }}>
             {children}
         </FavouriteContext.Provider>
     )

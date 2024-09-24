@@ -1,5 +1,6 @@
 import { Card } from "../../../common/components"
 import { IUsersListProps } from "../../../common/types"
+import { removeUserFromFavourites } from "../../../favourites/services"
 import * as styles from "./UsersList.module.scss"
 
 const UsersList = ({ users }: IUsersListProps) => (
@@ -10,6 +11,7 @@ const UsersList = ({ users }: IUsersListProps) => (
                 id={user.id}
                 avatar_url={user.avatar_url}
                 key={user.id}
+                onDeactiveStar={(id: number) => removeUserFromFavourites(id)}
             />
         ))}
     </div>
