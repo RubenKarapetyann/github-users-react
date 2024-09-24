@@ -12,25 +12,32 @@ export default function Profile() {
     const { login } = useParams()
     const [user, setUser] = useState<User | null>(null)
     const [loading, setLoading] = useState(false)
+    const [error, setError] = useState<null | string>(null)
 
     useEffect(() => {
         setLoading(true)
-        const getUser = async () => {
-            const userProfile = await getData({ url: `${USERS_ENDPOINT}/${login}` })
-            setUser(userProfile)
-            setLoading(false)
-        }
-
-        getUser()
+        getData({ url: `${USERS_ENDPOINT}/${login}` })
+            .then(userProfile => {
+                setUser(userProfile)
+                setLoading(false)
+            })
+            .catch(err => {
+                setError(err)
+                setLoading(false)
+            })
     }, [login])
 
-    if (!user) return
-
+    if (error) {
+        return <span>{error}</span>
+    }
+    
     return (
         <div className={styles.flexColumn}>
+            {user && <>
+                <ProfileLayout {...user}/>
+                <RecomendedUsers since={user.id}/>
+            </>}
             <Loading isLoading={loading}/>
-            <ProfileLayout {...user}/>
-            <RecomendedUsers since={user.id}/>
         </div>  
     ) 
 }

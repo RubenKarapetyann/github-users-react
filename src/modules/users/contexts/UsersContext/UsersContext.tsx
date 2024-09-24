@@ -12,7 +12,7 @@ const UsersContextProvider = ({ children }: PropsWithChildren) => {
     const [error, setError] = useState<null | string>(null)
     const [loading, setLoading] = useState<boolean>(false)
     const maxUsersCount = useRef<number>(0)
-    const { filters, search } = useSearchAndFilters()
+    const { search, filters } = useSearchAndFilters()
     
 
     const loadUsers = async () => {
@@ -32,28 +32,30 @@ const UsersContextProvider = ({ children }: PropsWithChildren) => {
 
     const loadMoreUsers = () => {
         setLoading(true)
-        const getUsers = async () => {
-            const collection = await loadUsers()
-
-            setUsers(users => [...users, ...(collection.items ? collection.items : collection)])
-            setLoading(false)
-        }
-
-        getUsers()
+        loadUsers()
+            .then(collection => {
+                setUsers(users => [...users, ...(collection.items ? collection.items : collection)])
+                setLoading(false)
+            })
+            .catch(err => {
+                setError(err)
+                setLoading(false)
+            })
     }
 
     useEffect(() => {        
         setLoading(true)
-        const getUsers = async () => {
-            const collection = await loadUsers()
-
-            setUsers(collection.items || [])
-            maxUsersCount.current = collection.total_count || 0
-            setLoading(false)
-        }
-
-        getUsers()
-    }, [search, filters])
+        loadUsers()
+            .then(collection => {                
+                setUsers(collection.items || [])
+                maxUsersCount.current = collection.total_count || 0
+                setLoading(false)
+            })
+            .catch(err => {
+                setError(err)
+                setLoading(false)
+            })
+    }, [ location.search ])
 
     const next = maxUsersCount.current - users.length > 0
     return (
