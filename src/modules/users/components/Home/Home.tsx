@@ -12,16 +12,13 @@ export default function Home() {
 
     const { loading, users, error, loadMoreUsers, next } = usersContext
 
-    if (loading) {
-        return <Loading/>
-    }
-
     if (error) {
         return <span>{error}</span> // created an error element
     }
 
     return (
         <div className={styles.container}>
+            {loading && <Loading/>}
             <InfinityUsersList 
                 users={users} 
                 scrollCallback={loadMoreUsers} 

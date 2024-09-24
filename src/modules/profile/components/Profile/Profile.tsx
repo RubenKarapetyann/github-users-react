@@ -6,16 +6,19 @@ import { User } from "../../../common/types/users"
 import { getData } from "../../../common/services"
 import { USERS_ENDPOINT } from "../../../common/constants/api"
 import RecomendedUsers from "../RecomendedUsers/RecomendedUsers"
+import { Loading } from "../../../common/components"
 
 export default function Profile() {
     const { login } = useParams()
     const [user, setUser] = useState<User | null>(null)
+    const [loading, setLoading] = useState(false)
 
-    // Add loadingsss
     useEffect(() => {
+        setLoading(true)
         const getUser = async () => {
             const userProfile = await getData({ url: `${USERS_ENDPOINT}/${login}` })
             setUser(userProfile)
+            setLoading(false)
         }
 
         getUser()
@@ -25,6 +28,7 @@ export default function Profile() {
 
     return (
         <div className={styles.flexColumn}>
+            {loading && <Loading/>}
             <ProfileLayout {...user}/>
             <RecomendedUsers since={user.id}/>
         </div>  

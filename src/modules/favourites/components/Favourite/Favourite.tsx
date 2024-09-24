@@ -14,7 +14,7 @@ export default function Favourite() {
     return (
         <div className={styles.container}>
             {
-                favourite?.users.length ? 
+                users.length ? 
                 <InfinityUsersList
                     scrollCallback={addMoreUsers}
                     users={users}
