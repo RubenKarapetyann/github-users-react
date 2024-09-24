@@ -3,9 +3,9 @@ import * as styles from "../../../../styles/styles.scss"
 import { PAGINATION } from "../../../common/constants/api";
 import EmptyList from "../EmptyList/EmptyList";
 import { UserOfList } from "../../../common/types/users";
-import { useFavourite } from "../../../../contexts/FavouriteContext/FavouriteContext";
 import { InfinityUsersList } from "../../../common/components";
 import { useSearchParams } from "react-router-dom";
+import { useFavourite } from "../../contexts/FavouriteContext";
 
 export default function Favourite() {
     const [users, setUsers] = useState<UserOfList[]>([])

@@ -1,7 +1,7 @@
 import { Suspense } from "react"
-import FavouriteContextProvider from "../contexts/FavouriteContext/FavouriteContext"
 import Router from "../routing/Router"
 import { Loading } from "../modules/common/components"
+import FavouriteContextProvider from "../modules/favourites/contexts/FavouriteContext"
 
 function App() {
     return (

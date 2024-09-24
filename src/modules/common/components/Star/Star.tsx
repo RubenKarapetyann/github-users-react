@@ -1,9 +1,9 @@
 import { FaRegStar, FaStar } from "react-icons/fa"
 import * as styles from "./Star.module.scss"
 import { useEffect, useState } from "react"
-import { useFavourite } from "../../../../contexts/FavouriteContext/FavouriteContext"
 import { IStarProps } from "../../types"
 import { PALETTE } from "../../constants/palette"
+import { useFavourite } from "../../../favourites/contexts/FavouriteContext"
 
 
 const Star = ({ avatar_url, id, login }: IStarProps) => {
