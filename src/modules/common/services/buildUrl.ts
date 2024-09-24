@@ -21,10 +21,7 @@ const buildUrl = ({
     build += perPage ? `&per_page=${perPage}` : ""
     build += page ? `&page=${page}` : ""
     build += sort ? "&sort=joined&order=asc" : ""
-
-    console.log(build);
     
-
     return build
 }
 
