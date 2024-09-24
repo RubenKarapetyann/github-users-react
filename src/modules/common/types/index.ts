@@ -21,3 +21,7 @@ export interface IInfinityUsersListProps extends IUsersListProps {
 export interface IStarProps extends UserOfList {
     onDeactiveStar: onDeactiveStarType
 }
+
+export interface ILoadingProps {
+    isLoading: boolean
+}

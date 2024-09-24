@@ -18,7 +18,7 @@ export default function Home() {
 
     return (
         <div className={styles.container}>
-            {loading && <Loading/>}
+            <Loading isLoading={loading}/>
             <InfinityUsersList 
                 users={users} 
                 scrollCallback={loadMoreUsers} 

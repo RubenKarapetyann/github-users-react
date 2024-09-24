@@ -5,7 +5,7 @@ import { Loading } from "../modules/common/components"
 function App() {
     return (
         <>
-            <Suspense fallback={<Loading/>}>
+            <Suspense fallback={<Loading isLoading={false}/>}>
                 <Router />
             </Suspense>
         </>

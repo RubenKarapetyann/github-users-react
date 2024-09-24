@@ -28,7 +28,7 @@ export default function Profile() {
 
     return (
         <div className={styles.flexColumn}>
-            {loading && <Loading/>}
+            <Loading isLoading={loading}/>
             <ProfileLayout {...user}/>
             <RecomendedUsers since={user.id}/>
         </div>  
