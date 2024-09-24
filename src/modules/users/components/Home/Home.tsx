@@ -2,11 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import * as styles from "../../../../styles/styles.scss"
 import { InfinityUsersList, Loading } from "../../../common/components";
 import { UserOfList } from "../../../common/types/users";
-import { getData } from "../../../common/services";
+import { buildUrl, getData } from "../../../common/services";
 import { PAGINATION, SEARCH_USERS_URL } from "../../../common/constants/api";
 import { useSearchParams } from "react-router-dom";
 import FILTERS from "../../../common/constants/filters";
-import { FilterTypes } from "../../../common/types/header";
 
 // UsersContext
  // getUsers(){paramas}
@@ -29,7 +28,14 @@ export default function Home() {
 
         const getUsers = async () => {
             const collection = await getData({ url: 
-                `${SEARCH_USERS_URL}?q=${search ? search : "a" /* for avoiding github api bug (will explain) */ }+repos:${currentFilters.minRep}..${currentFilters.maxRep}+followers:${currentFilters.minFollows}..${currentFilters.maxFollows}&per_page=${PAGINATION}&page=${page + 1}&sort=joined&order=asc`
+                buildUrl({ 
+                    url: SEARCH_USERS_URL, 
+                    search, 
+                    filters: currentFilters,
+                    perPage: PAGINATION,
+                    sort: true,
+                    page: page + 1
+                })
             })
 
             setUsers(users => [...users, ...(collection.items ? collection.items : collection)])
@@ -38,10 +44,15 @@ export default function Home() {
     }
 
     useEffect(() => {        
-        // Remove duplications
         const getUsers = async () => {
             const collection = await getData({ url: 
-                `${SEARCH_USERS_URL}?q=${search ? search : "a" /* for avoiding github api bug (will explain) */ }+repos:${currentFilters.minRep}..${currentFilters.maxRep}+followers:${currentFilters.minFollows}..${currentFilters.maxFollows}&per_page=${PAGINATION}&sort=joined&order=asc`
+                buildUrl({ 
+                    url: SEARCH_USERS_URL, 
+                    search, 
+                    filters: currentFilters,
+                    perPage: PAGINATION,
+                    sort: true,
+                })
             })
             setUsers(collection.items || [])
             maxUsersCount.current = collection.total_count || 0
