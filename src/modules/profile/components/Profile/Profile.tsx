@@ -1,30 +1,21 @@
 import { useParams } from "react-router-dom"
 import * as styles from "../../../../styles/styles.scss"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import ProfileLayout from "../ProfileLayout/ProfileLayout"
-import { User } from "../../../common/types/users"
-import { getData } from "../../../common/services"
-import { USERS_ENDPOINT } from "../../../common/constants/api"
 import RecomendedUsers from "../RecomendedUsers/RecomendedUsers"
 import { Loading } from "../../../common/components"
+import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
+import { getUser, selectProfileNecessaries } from "../../slice"
 
 export default function Profile() {
     const { login } = useParams()
-    const [user, setUser] = useState<User | null>(null)
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState<null | string>(null)
+    const { user, loading, error } = useAppSelector(selectProfileNecessaries)
+    const dispatch = useAppDispatch()
 
     useEffect(() => {
-        setLoading(true)
-        getData({ url: `${USERS_ENDPOINT}/${login}` })
-            .then(userProfile => {
-                setUser(userProfile)
-                setLoading(false)
-            })
-            .catch(err => {
-                setError(err)
-                setLoading(false)
-            })
+        if (login) {
+            dispatch(getUser(login))
+        }
     }, [login])
 
     if (error) {

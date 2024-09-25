@@ -8,14 +8,17 @@ import { addUserToFavourites, getFavouriteUsers } from "../../../favourites/serv
 
 const Star = ({ avatar_url, id, login, onDeactiveStar }: IStarProps) => {
     const [active, setActive] = useState<boolean>(false)
-    const users = getFavouriteUsers({})
 
     useEffect(() => {
+        const users = getFavouriteUsers({})
         const currentUser = users.find(favourite => favourite.id === id)
-        if (!currentUser) return
-
-        setActive(true)
-    }, [])
+        
+        if (!currentUser) {
+            setActive(false)
+        } else {
+            setActive(true)
+        }
+    }, [login])
 
     const onClick = () => {
         if (active) {
