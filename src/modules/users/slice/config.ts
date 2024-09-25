@@ -6,4 +6,5 @@ export const initialState: UsersSliceState = {
     loading: false,
     error: null,
     next: false,
+    maxUsersCount: 0
 }

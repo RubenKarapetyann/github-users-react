@@ -1,15 +1,25 @@
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
 import * as styles from "../../../../styles/styles.scss"
 import { InfinityUsersList, Loading } from "../../../common/components";
 import { removeUserFromFavourites } from "../../../favourites/services";
-import { useUsers } from "../../contexts/UsersContext";
+import { useSearchAndFilters } from "../../../common/hooks";
+import { PAGINATION } from "../../../common/constants/api";
+import { getUsers, selectHomeNecessaries } from "../../slice";
 
 export default function Home() {
-    const usersContext = useUsers()
-    if (!usersContext) {
-        return
+    const { loading, users, error, next } = useAppSelector(selectHomeNecessaries)
+    const page = Math.ceil(users.length / PAGINATION) + 1
+    const dispatch = useAppDispatch()
+    const { search, filters } = useSearchAndFilters()
+
+    const loadMoreUsers = () => {        
+        dispatch(getUsers({ search, filters, page }))
     }
 
-    const { loading, users, error, loadMoreUsers, next } = usersContext
+    useEffect(() => {
+        dispatch(getUsers({ search, filters, page, replace: true }))
+    }, [location.search])
 
     if (error) {
         return <span>{error}</span> // created an error element

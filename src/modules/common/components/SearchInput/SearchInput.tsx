@@ -1,9 +1,10 @@
 import * as styles from "./SearchInput.module.scss"
 import { useState } from "react"
-import { useParamsProcess } from "../../hooks"
+import { useParamsProcess, useSearchAndFilters } from "../../hooks"
 
 const SearchInput = () => {
-    const [value, setValue] = useState<string>("")
+    const { search } = useSearchAndFilters()
+    const [value, setValue] = useState<string>(search || "")
     const paramsProcess = useParamsProcess("q")
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {

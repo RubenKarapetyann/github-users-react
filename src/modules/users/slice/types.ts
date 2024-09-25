@@ -4,5 +4,13 @@ export interface UsersSliceState {
     users: UserOfList[],
     loading: boolean,
     error: null | string,
-    next: boolean
+    next: boolean,
+    maxUsersCount: number
+}
+
+export interface GetUsersProps {
+    page: number,
+    search?: string | null,
+    filters: Record<string, string>,
+    replace?: boolean
 }
