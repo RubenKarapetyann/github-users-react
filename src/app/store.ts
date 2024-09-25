@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { USERS_SLICE } from "../modules/users/slice/config";
-import { usersReducer } from "../modules/users/slice";
+import { USERS_SLICE, usersReducer } from "../modules/users/slice";
+import { FAVOURITE_SLICE, favouriteReducer } from "../modules/favourites/slice";
 
 const store = configureStore({
     reducer : {
-        [USERS_SLICE]: usersReducer
+        [USERS_SLICE]: usersReducer,
+        [FAVOURITE_SLICE]: favouriteReducer
     }
 })
 export default store

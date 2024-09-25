@@ -1,15 +1,30 @@
 import * as styles from "../../../../styles/styles.scss"
 import EmptyList from "../EmptyList/EmptyList";
 import { InfinityUsersList } from "../../../common/components";
-import { useFavourite } from "../../contexts/FavouriteContext";
+import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
+import { selectFavouriteNecessaries } from "../../slice/selectors";
+import { useEffect } from "react";
+import { useSearchAndFilters } from "../../../common/hooks";
+import { addMoreFavouriteUsers, removeFavouriteUser } from "../../slice";
+import { PAGINATION } from "../../../common/constants/api";
 
 export default function Favourite() {
-    const favourite = useFavourite()
-    if (!favourite) {
-        return null
-    }
+    const { users, next } = useAppSelector(selectFavouriteNecessaries)
+    const page = Math.ceil(users.length / PAGINATION)
+    const { search } = useSearchAndFilters()
+    const dispatch = useAppDispatch()    
 
-    const { users, removeUser, addMoreUsers, next } = favourite
+    const addMoreUsers = () => dispatch(addMoreFavouriteUsers({
+        page, search: search || ""
+    }))
+
+    const removeUser = (id: number) => dispatch(removeFavouriteUser(id))
+
+    useEffect(() => {
+        dispatch(addMoreFavouriteUsers({
+            page: 0, search: search || "", replace: true
+        }))
+    }, [search])
 
     return (
         <div className={styles.container}>
