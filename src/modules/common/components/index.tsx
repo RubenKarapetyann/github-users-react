@@ -5,6 +5,7 @@ import Card from "./Card/Card"
 import SearchHeader from "./SearchHeader/SearchHeader"
 import AdvancedSearchHeader from "./AdvancedSearchHeader/AdvancedSearchHeader"
 import NavBar from "./NavBar/NavBar"
+import Exception from "./Exception/Exception"
 
 export { 
     Star,
@@ -13,5 +14,6 @@ export {
     Card,
     SearchHeader,
     AdvancedSearchHeader,
-    NavBar
+    NavBar,
+    Exception
 }
