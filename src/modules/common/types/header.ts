@@ -1,8 +1,3 @@
-export interface INavLinkProps {
-    displayName: string,
-    path: string
-}
-
 export type FilterTypes = "minRep" | "maxRep" | "maxFollows" | "minFollows"
 
 export interface FilterObject {
