@@ -21,19 +21,16 @@ export default function Home() {
         dispatch(getUsers({ search, filters, page, replace: true }))
     }, [location.search])
 
-    if (error) {
-        return <Exception message={error} onTryAgain={() => dispatch(getUsers({ search, filters, page, replace: true }))}/>
-    }
-
     return (
         <div className={styles.container}>
             <Loading isLoading={loading}/>
-            <InfinityUsersList 
+            {users && <InfinityUsersList 
                 users={users} 
                 scrollCallback={loadMoreUsers} 
                 next={next}
                 onDeactiveStar={(id: number) => removeUserFromFavourites(id)}
-            />
+            />}
+            <Exception error={error} onTryAgain={() => dispatch(getUsers({ search, filters, page, replace: true }))}/>
         </div>
     )
 }

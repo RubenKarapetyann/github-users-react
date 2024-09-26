@@ -10,6 +10,7 @@ export const usersSlice = createSlice({
         builder
             .addCase(getUsers.pending, (state) => {
                 state.loading = true
+                state.error = null
             })
             .addCase(getUsers.fulfilled, (state, action) => {                
                 state.loading = false

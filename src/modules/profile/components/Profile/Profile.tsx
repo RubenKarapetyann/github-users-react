@@ -17,10 +17,6 @@ export default function Profile() {
             dispatch(getUser(login))
         }
     }, [login])
-
-    if (error) {
-        return <Exception message={error} onTryAgain={() => dispatch(getUser(login || ""))}/>
-    }
     
     return (
         <div className={styles.flexColumn}>
@@ -29,6 +25,7 @@ export default function Profile() {
                 <RecomendedUsers since={user.id}/>
             </>}
             <Loading isLoading={loading}/>
+            <Exception error={error} onTryAgain={() => dispatch(getUser(login || ""))}/>
         </div>  
     ) 
 }

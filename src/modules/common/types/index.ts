@@ -27,6 +27,6 @@ export interface ILoadingProps {
 }
 
 export interface IExceptionProps {
-    message: string,
+    error: string | null,
     onTryAgain: () => void
 }

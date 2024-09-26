@@ -10,6 +10,7 @@ export const profileSlice = createSlice({
         builder
             .addCase(getUser.pending, (state) => {
                 state.loading = true
+                state.error = null
             })
             .addCase(getUser.fulfilled, (state, action) => {                
                 state.loading = false
@@ -18,6 +19,9 @@ export const profileSlice = createSlice({
             .addCase(getUser.rejected, (state, action) => {                                
                 state.loading = false
                 state.user = null
+                if (action.error.message) {
+                    state.error = action.error.message
+                }
             })
             .addCase(getRecomendedUsers.fulfilled, (state, action) => {
                 state.recomendedUsers = action.payload
