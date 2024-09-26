@@ -25,3 +25,8 @@ export interface IStarProps extends UserOfList {
 export interface ILoadingProps {
     isLoading: boolean
 }
+
+export interface IExceptionProps {
+    message: string,
+    onTryAgain: () => void
+}
