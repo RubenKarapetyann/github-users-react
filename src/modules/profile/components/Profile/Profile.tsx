@@ -3,7 +3,7 @@ import * as styles from "../../../../styles/styles.scss"
 import { useEffect } from "react"
 import ProfileLayout from "../ProfileLayout/ProfileLayout"
 import RecomendedUsers from "../RecomendedUsers/RecomendedUsers"
-import { Loading } from "../../../common/components"
+import { Exception, Loading } from "../../../common/components"
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
 import { getUser, selectProfileNecessaries } from "../../slice"
 
@@ -19,7 +19,7 @@ export default function Profile() {
     }, [login])
 
     if (error) {
-        return <span>{error}</span>
+        return <Exception message={error} onTryAgain={() => dispatch(getUser(login || ""))}/>
     }
     
     return (

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
 import * as styles from "../../../../styles/styles.scss"
-import { InfinityUsersList, Loading } from "../../../common/components";
+import { Exception, InfinityUsersList, Loading } from "../../../common/components";
 import { removeUserFromFavourites } from "../../../favourites/services";
 import { useSearchAndFilters } from "../../../common/hooks";
 import { PAGINATION } from "../../../common/constants/api";
@@ -22,7 +22,7 @@ export default function Home() {
     }, [location.search])
 
     if (error) {
-        return <span>{error}</span> // created an error element
+        return <Exception message={error} onTryAgain={() => dispatch(getUsers({ search, filters, page, replace: true }))}/>
     }
 
     return (
