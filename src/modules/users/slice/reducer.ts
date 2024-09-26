@@ -1,6 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { initialState, USERS_SLICE } from "./config";
 import { getUsers } from "./thunks";
+import { GetUsersFulfilledType } from "./types";
 
 export const usersSlice = createSlice({
     name: USERS_SLICE,
@@ -12,7 +13,7 @@ export const usersSlice = createSlice({
                 state.loading = true
                 state.error = null
             })
-            .addCase(getUsers.fulfilled, (state, action) => {                
+            .addCase(getUsers.fulfilled, (state, action: PayloadAction<GetUsersFulfilledType>) => {                
                 state.loading = false
                 if (action.payload.replace) {
                     state.users = action.payload.items

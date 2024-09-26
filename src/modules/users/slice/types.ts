@@ -14,3 +14,9 @@ export interface GetUsersProps {
     filters: Record<string, string>,
     replace?: boolean
 }
+
+export interface GetUsersFulfilledType {
+    total_count: number,
+    replace: boolean,
+    items: UserOfList[]
+}

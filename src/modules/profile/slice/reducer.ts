@@ -1,6 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { initialState, PROFILE_SLICE } from "./config";
 import { getRecomendedUsers, getUser } from "./thunks";
+import { User, UserOfList } from "../../common/types/users";
 
 export const profileSlice = createSlice({
     name: PROFILE_SLICE,
@@ -12,7 +13,7 @@ export const profileSlice = createSlice({
                 state.loading = true
                 state.error = null
             })
-            .addCase(getUser.fulfilled, (state, action) => {                
+            .addCase(getUser.fulfilled, (state, action: PayloadAction<User>) => {                
                 state.loading = false
                 state.user = action.payload
             })
@@ -23,7 +24,7 @@ export const profileSlice = createSlice({
                     state.error = action.error.message
                 }
             })
-            .addCase(getRecomendedUsers.fulfilled, (state, action) => {
+            .addCase(getRecomendedUsers.fulfilled, (state, action: PayloadAction<UserOfList[]>) => {
                 state.recomendedUsers = action.payload
             })
     }

@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { FAVOURITE_SLICE, initialState } from "./config";
 import { getFavouriteUsers, removeUserFromFavourites } from "../services";
+import { AddMoreFavouriteUsersType } from "./types";
 
 export const favouriteSlice = createSlice({
     name: FAVOURITE_SLICE,
@@ -10,7 +11,7 @@ export const favouriteSlice = createSlice({
             state.users = state.users.filter(user => user.id !== action.payload)
             removeUserFromFavourites(action.payload)
         },
-        addMoreFavouriteUsers: (state, action: PayloadAction<{page: number, search: string, replace?: boolean}>) => {
+        addMoreFavouriteUsers: (state, action: PayloadAction<AddMoreFavouriteUsersType>) => {
             const moreUsers = getFavouriteUsers({ 
                 page: action.payload.page,
                 search: action.payload.search
@@ -23,8 +24,7 @@ export const favouriteSlice = createSlice({
             }    
             state.next = getFavouriteUsers({}).length - state.users.length > 0                
         }
-    },
-    extraReducers(builder) {}
+    }
 })
 
 const favouriteReducer = favouriteSlice.reducer
