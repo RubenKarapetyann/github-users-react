@@ -1,15 +1,15 @@
-import { GetDataProps } from "../types/services"
+import { GetDataProps } from "./types"
 
 const getData = async ({
     url,
     method = "GET",
     body
 }: GetDataProps) => {
-    try {
-        const response = await fetch(url, {method, body: JSON.stringify(body)})
+    const response = await fetch(url, {method, body: JSON.stringify(body)})
+    if (response.ok) {
         return await response.json()
-    }catch (err) {
-        console.log(err)
+    } else {
+        throw new Error("something went wrong")
     }
 }
 

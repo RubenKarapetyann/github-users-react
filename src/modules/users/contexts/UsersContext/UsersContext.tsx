@@ -17,7 +17,7 @@ const UsersContextProvider = ({ children }: PropsWithChildren) => {
 
     const loadUsers = async () => {
         const page = Math.ceil(users.length / PAGINATION) + 1
-        return await getData({ url: 
+        return getData({ url: 
             buildUrl({ 
                 url: SEARCH_USERS_URL, 
                 search, 
@@ -38,28 +38,37 @@ const UsersContextProvider = ({ children }: PropsWithChildren) => {
                 setLoading(false)
             })
             .catch(err => {
-                setError(err)
+                if (err instanceof Error) {
+                    setError(err.message)
+                }
                 setLoading(false)
             })
     }
 
-    useEffect(() => {        
+    const initialLoad = () => {        
         setLoading(true)
         loadUsers()
             .then(collection => {                
                 setUsers(collection.items || [])
                 maxUsersCount.current = collection.total_count || 0
                 setLoading(false)
+                setError(null)
             })
             .catch(err => {
-                setError(err)
+                if (err instanceof Error) {
+                    setError(err.message)
+                }
                 setLoading(false)
             })
+    }
+
+    useEffect(() => {        
+        initialLoad()
     }, [ location.search ])
 
     const next = maxUsersCount.current - users.length > 0
     return (
-        <UsersContext.Provider value={{ users, error, loading, loadMoreUsers, next }}>
+        <UsersContext.Provider value={{ users, error, loading, loadMoreUsers, next, tryAgain: initialLoad }}>
             {children}
         </UsersContext.Provider>
     )

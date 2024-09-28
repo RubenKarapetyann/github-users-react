@@ -1,5 +1,5 @@
 import * as styles from "../../../../styles/styles.scss"
-import { InfinityUsersList, Loading } from "../../../common/components";
+import { Exception, InfinityUsersList, Loading } from "../../../common/components";
 import { removeUserFromFavourites } from "../../../favourites/services";
 import { useUsers } from "../../contexts/UsersContext";
 
@@ -9,21 +9,19 @@ export default function Home() {
         return
     }
 
-    const { loading, users, error, loadMoreUsers, next } = usersContext
-
-    if (error) {
-        return <span>{error}</span> // created an error element
-    }
-
+    const { loading, users, error, loadMoreUsers, next, tryAgain } = usersContext
     return (
-        <div className={styles.container}>
+        <>
             <Loading isLoading={loading}/>
-            <InfinityUsersList 
-                users={users} 
-                scrollCallback={loadMoreUsers} 
-                next={next}
-                onDeactiveStar={(id: number) => removeUserFromFavourites(id)}
-            />
-        </div>
+            {error && <Exception message={error} onTryAgain={tryAgain}/>}
+            {!error && <div className={styles.container}>
+                <InfinityUsersList 
+                    users={users} 
+                    scrollCallback={loadMoreUsers} 
+                    next={next}
+                    onDeactiveStar={(id: number) => removeUserFromFavourites(id)}
+                />
+            </div>}
+        </>
     )
 }

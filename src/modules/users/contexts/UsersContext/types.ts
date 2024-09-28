@@ -5,5 +5,6 @@ export interface UsersContextType {
     loading: boolean,
     error: null | string,
     loadMoreUsers: () => void,
-    next: boolean
+    next: boolean,
+    tryAgain: () => void
 }

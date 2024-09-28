@@ -1,4 +1,4 @@
-import { buildUrlProps } from "../types/services"
+import { buildUrlProps } from "./types"
 
 const buildUrl = ({
     url,

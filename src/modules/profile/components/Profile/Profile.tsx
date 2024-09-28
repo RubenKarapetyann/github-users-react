@@ -6,7 +6,7 @@ import { User } from "../../../common/types/users"
 import { getData } from "../../../common/services"
 import { USERS_ENDPOINT } from "../../../common/constants/api"
 import RecomendedUsers from "../RecomendedUsers/RecomendedUsers"
-import { Loading } from "../../../common/components"
+import { Exception, Loading } from "../../../common/components"
 
 export default function Profile() {
     const { login } = useParams()
@@ -14,30 +14,35 @@ export default function Profile() {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<null | string>(null)
 
-    useEffect(() => {
+    const loadUserProfile = () => {
         setLoading(true)
         getData({ url: `${USERS_ENDPOINT}/${login}` })
             .then(userProfile => {
                 setUser(userProfile)
                 setLoading(false)
+                setError(null)
             })
             .catch(err => {
-                setError(err)
+                if (err instanceof Error) {
+                    setError(err.message)
+                }
                 setLoading(false)
             })
+    }
+
+    useEffect(() => {
+        loadUserProfile()
     }, [login])
 
-    if (error) {
-        return <span>{error}</span>
-    }
     
     return (
-        <div className={styles.flexColumn}>
-            {user && <>
+        <>
+            {!error && user && <div className={styles.flexColumn}>
                 <ProfileLayout {...user}/>
                 <RecomendedUsers since={user.id}/>
-            </>}
+            </div>}
+            {error && <Exception message={error} onTryAgain={loadUserProfile}/>}
             <Loading isLoading={loading}/>
-        </div>  
+        </>  
     ) 
 }
