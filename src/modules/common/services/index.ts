@@ -1,9 +1,9 @@
 import getData from "./getData";
-import processParams from "./processParams";
+import buildParamsUrl from "./buildParamsUrl";
 import buildUrl from "./buildUrl";
 
 export {
     getData,
-    processParams,
+    buildParamsUrl,
     buildUrl
 }

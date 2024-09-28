@@ -1,4 +1,4 @@
-const processParams = (key: string, value: string) => {
+const buildParamsUrl = (key: string, value: string) => {
     const url = new URL(location.href)
 
     if (value) {
@@ -10,4 +10,4 @@ const processParams = (key: string, value: string) => {
     return url.pathname + url.search
 }
 
-export default processParams
+export default buildParamsUrl
