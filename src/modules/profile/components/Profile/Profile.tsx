@@ -19,13 +19,13 @@ export default function Profile() {
     }, [login])
     
     return (
-        <div className={styles.flexColumn}>
-            {user && <>
+        <>
+            {user && !error && <div className={styles.flexColumn}>
                 <ProfileLayout {...user}/>
                 <RecomendedUsers since={user.id}/>
-            </>}
+            </div>}
             <Loading isLoading={loading}/>
             <Exception error={error} onTryAgain={() => dispatch(getUser(login || ""))}/>
-        </div>  
+        </>  
     ) 
 }

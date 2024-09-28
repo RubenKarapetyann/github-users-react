@@ -22,15 +22,18 @@ export default function Home() {
     }, [location.search])
 
     return (
-        <div className={styles.container}>
+        <>
             <Loading isLoading={loading}/>
-            {users && <InfinityUsersList 
-                users={users} 
-                scrollCallback={loadMoreUsers} 
-                next={next}
-                onDeactiveStar={(id: number) => removeUserFromFavourites(id)}
-            />}
+            {users && !error &&
+            <div className={styles.container}>
+                <InfinityUsersList 
+                    users={users} 
+                    scrollCallback={loadMoreUsers} 
+                    next={next}
+                    onDeactiveStar={(id: number) => removeUserFromFavourites(id)}
+                />
+            </div>}
             <Exception error={error} onTryAgain={() => dispatch(getUsers({ search, filters, page, replace: true }))}/>
-        </div>
+        </>
     )
 }
