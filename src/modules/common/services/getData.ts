@@ -1,4 +1,4 @@
-import { GetDataProps } from "../types/services"
+import { GetDataProps } from "./types"
 
 const getData = async ({
     url,
