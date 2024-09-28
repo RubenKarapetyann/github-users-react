@@ -20,3 +20,7 @@ export interface GetUsersFulfilledType {
     replace: boolean,
     items: UserOfList[]
 }
+
+export interface GetUsersErrorType {
+    error: Error
+}

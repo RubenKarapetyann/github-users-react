@@ -5,7 +5,7 @@ import ProfileLayout from "../ProfileLayout/ProfileLayout"
 import RecomendedUsers from "../RecomendedUsers/RecomendedUsers"
 import { Exception, Loading } from "../../../common/components"
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
-import { getUser, selectProfileNecessaries } from "../../slice"
+import { getProfile, selectProfileNecessaries } from "../../slice"
 
 export default function Profile() {
     const { login } = useParams()
@@ -14,7 +14,7 @@ export default function Profile() {
 
     useEffect(() => {
         if (login) {
-            dispatch(getUser(login))
+            dispatch(getProfile(login))
         }
     }, [login])
     
@@ -25,7 +25,7 @@ export default function Profile() {
                 <RecomendedUsers since={user.id}/>
             </>}
             <Loading isLoading={loading}/>
-            <Exception error={error} onTryAgain={() => dispatch(getUser(login || ""))}/>
+            <Exception error={error} onTryAgain={() => dispatch(getProfile(login || ""))}/>
         </div>  
     ) 
 }

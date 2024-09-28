@@ -1,14 +1,13 @@
 import { PROFILE_SLICE } from "./config";
 import profileReducer from "./reducer";
-import { getUser } from "./thunks";
-import { getRecomendedUsers } from "./thunks";
 import { selectProfileNecessaries, selectRecomendedUsers } from "./selectors";
+import { getProfile, getRecomendedUsers } from "./actions";
 
 export {
     profileReducer,
     PROFILE_SLICE,
-    getUser,
-    getRecomendedUsers,
     selectProfileNecessaries,
-    selectRecomendedUsers
+    selectRecomendedUsers,
+    getRecomendedUsers,
+    getProfile
 }

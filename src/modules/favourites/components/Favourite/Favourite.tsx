@@ -15,7 +15,7 @@ export default function Favourite() {
     const dispatch = useAppDispatch()    
 
     const addMoreUsers = () => dispatch(addMoreFavouriteUsers({
-        page, search: search || ""
+        page, search: search || "", replace: false
     }))
 
     const removeUser = (id: number) => dispatch(removeFavouriteUser(id))

@@ -5,7 +5,8 @@ import { Exception, InfinityUsersList, Loading } from "../../../common/component
 import { removeUserFromFavourites } from "../../../favourites/services";
 import { useSearchAndFilters } from "../../../common/hooks";
 import { PAGINATION } from "../../../common/constants/api";
-import { getUsers, selectHomeNecessaries } from "../../slice";
+import { getUsers } from "../../slice/actions";
+import { selectHomeNecessaries } from "../../slice";
 
 export default function Home() {
     const { loading, users, error, next } = useAppSelector(selectHomeNecessaries)

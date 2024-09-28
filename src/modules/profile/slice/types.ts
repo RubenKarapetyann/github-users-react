@@ -6,3 +6,7 @@ export interface ProfileSliceState {
     error: string | null,
     recomendedUsers: UserOfList[]
 }
+
+export interface ProfileRejectedProps {
+    error: Error
+}

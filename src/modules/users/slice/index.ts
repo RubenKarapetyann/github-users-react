@@ -1,13 +1,13 @@
 import { selectHomeNecessaries } from "./selectors";
 import { usersSlice } from "./reducer";
 import usersReducer from "./reducer";
-import { getUsers } from "./thunks";
 import { USERS_SLICE } from "./config";
+import { watchGetUsers } from "./sagas";
 
 export {
     selectHomeNecessaries,
     usersSlice,
     usersReducer,
-    getUsers,
-    USERS_SLICE
+    USERS_SLICE,
+    watchGetUsers
 }
