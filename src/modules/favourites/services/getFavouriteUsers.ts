@@ -1,6 +1,6 @@
 import { PAGINATION } from "../../common/constants/api"
 import { UserOfList } from "../../common/types/users"
-import { GetFavouriteUsersProps } from "../types/services"
+import { GetFavouriteUsersProps } from "./types"
 
 const getFavouriteUsers = ({ perPage=PAGINATION, page, search }: GetFavouriteUsersProps): UserOfList[] => {
     try {
