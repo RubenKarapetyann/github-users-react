@@ -1,4 +1,4 @@
-import * as styles from "../../../../styles/styles.scss"
+import * as styles from "../../../common/styles/styles.scss"
 import { Exception, InfinityUsersList, Loading } from "../../../common/components";
 import { removeUserFromFavourites } from "../../../favourites/services";
 import { useUsers } from "../../contexts/UsersContext";

@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom"
-import * as styles from "../../../../styles/styles.scss"
+import * as styles from "../../../common/styles/styles.scss"
 import { useEffect, useState } from "react"
 import ProfileLayout from "../ProfileLayout/ProfileLayout"
 import { User } from "../../../common/types/users"
