@@ -4,7 +4,7 @@ import Layout from "./Layout";
 
 const HomeLazy = lazy(() => import("./components"))
 
-const HomeRouter = () => (        
+const UserRouter = () => (        
     <Routes>
         <Route 
             path="/"
@@ -15,4 +15,4 @@ const HomeRouter = () => (
     </Routes>
 )
 
-export { HomeRouter as default }
+export { UserRouter as default }

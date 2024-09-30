@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react"
 import * as styles from "./NavBar.module.scss"
-import HEADER_ITEMS from "../../constants/header"
-import NavBarLink from "../NavBarLink/NavBarLink"
+import { NavLink } from "react-router-dom"
 
 const NavBar = () => {
     const navRef = useRef<HTMLElement>(null)
@@ -24,12 +23,12 @@ const NavBar = () => {
 
     return (
         <nav className={styles.navBar} ref={navRef}>
-            {HEADER_ITEMS.map(item => (
-                <NavBarLink
-                    to={item.path}
-                    key={item.id}
-                >{item.displayName}</NavBarLink>
-            ))}
+            <NavLink to="/">
+                HOME
+            </NavLink>
+            <NavLink to="/favourite">
+                FAVOURITE
+            </NavLink>
         </nav>
     )
 }

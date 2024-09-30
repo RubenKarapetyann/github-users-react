@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { IRecomendedUsersProps } from "../../types"
 import UsersList from "../UsersList/UsersList"
-import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks"
 import { getRecomendedUsers, selectRecomendedUsers } from "../../slice"
 
 const RecomendedUsers = ({ since }: IRecomendedUsersProps) => {
