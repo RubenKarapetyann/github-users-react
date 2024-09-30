@@ -2,7 +2,7 @@ import getFavouriteUsers from "./getFavouriteUsers"
 
 const removeUserFromFavourites = (id: number) => {
     try {
-        const users = getFavouriteUsers({})
+        const { users } = getFavouriteUsers({})
         const newUsers = users.filter(user => user.id !== id)
 
         localStorage.setItem("favourites", JSON.stringify(newUsers))

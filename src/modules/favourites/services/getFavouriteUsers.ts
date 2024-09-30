@@ -1,13 +1,17 @@
 import { PAGINATION } from "../../common/constants/api"
 import { UserOfList } from "../../common/types/users"
-import { GetFavouriteUsersProps } from "./types"
+import { GetFavouriteUsersProps, GetFavouriteUsersReturnType } from "./types"
 
-const getFavouriteUsers = ({ perPage=PAGINATION, page, search }: GetFavouriteUsersProps): UserOfList[] => {
+const getFavouriteUsers = ({ perPage=PAGINATION, page, search }: GetFavouriteUsersProps): GetFavouriteUsersReturnType => {
+    const errorReturn = {
+        users: [],
+        total_count: 0
+    }
     try {
         const usersJson = localStorage.getItem("favourites")
 
         if (!usersJson){
-            return []
+            return errorReturn
         }
         let users = JSON.parse(usersJson) as UserOfList[]
 
@@ -15,14 +19,18 @@ const getFavouriteUsers = ({ perPage=PAGINATION, page, search }: GetFavouriteUse
             users = users.filter(user => new RegExp(search, "i").test(user.login))
         }
 
+        const total_count = users.length 
         if (page !== undefined) {
             users = users.slice(page * perPage, page * perPage + perPage)
         }
 
-        return users
+        return {
+            users,
+            total_count
+        }
     } catch (err) {
         console.log(err)
-        return []
+        return errorReturn
     }
 }
 

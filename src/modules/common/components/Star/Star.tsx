@@ -10,7 +10,7 @@ const Star = ({ avatar_url, id, login, onDeactiveStar }: IStarProps) => {
     const [active, setActive] = useState<boolean>(false)
 
     useEffect(() => {
-        const users = getFavouriteUsers({})
+        const { users } = getFavouriteUsers({})
         const currentUser = users.find(favourite => favourite.id === id)
         
         if (!currentUser) {

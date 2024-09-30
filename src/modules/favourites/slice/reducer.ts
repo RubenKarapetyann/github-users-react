@@ -12,7 +12,7 @@ export const favouriteSlice = createSlice({
             removeUserFromFavourites(action.payload)
         },
         addMoreFavouriteUsers: (state, action: PayloadAction<AddMoreFavouriteUsersType>) => {
-            const moreUsers = getFavouriteUsers({ 
+            const { users: moreUsers, total_count } = getFavouriteUsers({ 
                 page: action.payload.page,
                 search: action.payload.search
             })
@@ -22,7 +22,7 @@ export const favouriteSlice = createSlice({
             } else {                
                 state.users = [...state.users, ...moreUsers]
             }    
-            state.next = getFavouriteUsers({}).length - state.users.length > 0                
+            state.next = total_count - state.users.length > 0                
         }
     }
 })
