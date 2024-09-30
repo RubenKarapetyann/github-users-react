@@ -1,7 +1,7 @@
-import * as styles from "../../../../styles/styles.scss"
+import * as styles from "../../../common/styles/styles.scss"
 import EmptyList from "../EmptyList/EmptyList";
 import { InfinityUsersList } from "../../../common/components";
-import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import { selectFavouriteNecessaries } from "../../slice/selectors";
 import { useEffect } from "react";
 import { useSearchAndFilters } from "../../../common/hooks";

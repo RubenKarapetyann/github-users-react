@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
-import * as styles from "../../../../styles/styles.scss"
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+import * as styles from "../../../common/styles/styles.scss"
 import { Exception, InfinityUsersList, Loading } from "../../../common/components";
 import { removeUserFromFavourites } from "../../../favourites/services";
 import { useSearchAndFilters } from "../../../common/hooks";

@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom"
-import * as styles from "../../../../styles/styles.scss"
+import * as styles from "./../../../common/styles/styles.scss"
 import { useEffect } from "react"
 import ProfileLayout from "../ProfileLayout/ProfileLayout"
 import RecomendedUsers from "../RecomendedUsers/RecomendedUsers"
 import { Exception, Loading } from "../../../common/components"
-import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks"
 import { getProfile, selectProfileNecessaries } from "../../slice"
 
 export default function Profile() {
