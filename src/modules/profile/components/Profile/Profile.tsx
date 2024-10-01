@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom"
 import * as styles from "../../../common/styles/styles.scss"
 import ProfileLayout from "../ProfileLayout/ProfileLayout"
-import RecomendedUsers from "../RecomendedUsers/RecomendedUsers"
+import RecomendedUsers from "../RecommendedUsers/RecommendedUsers"
 import { Exception, Loading } from "../../../common/components"
 import { useProfile } from "../../hooks"
 
