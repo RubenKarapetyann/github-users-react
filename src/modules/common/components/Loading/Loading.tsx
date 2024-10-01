@@ -1,19 +1,29 @@
 import { FaSpinner } from "react-icons/fa"
 import * as styles from "./Loading.module.scss"
 import { ILoadingProps } from "../../types"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 const Loading = ({ isLoading }: ILoadingProps) => {
     const [isReady, setIsReady] = useState(false)
-    
-    useEffect(() => {        
-        if (isLoading) {
+    const calledTimes = useRef(0)
+
+    useEffect(() => {
+        if (isLoading && calledTimes.current > 0) {
             setIsReady(false)
             setTimeout(() => {
                 setIsReady(true)
+                calledTimes.current++
             }, 300)
         }
     }, [isLoading])
+
+    useEffect(() => {
+        setIsReady(false)
+        setTimeout(() => {
+            setIsReady(true)
+            calledTimes.current++
+        }, 300)
+    }, [])
 
     if (isReady && !isLoading) {
         return null

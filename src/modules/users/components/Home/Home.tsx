@@ -1,23 +1,27 @@
 import * as styles from "../../../common/styles/styles.scss"
 import { Exception, InfinityUsersList, Loading } from "../../../common/components";
 import { removeUserFromFavourites } from "../../../favourites/services";
-import { useUsers } from "../../contexts/UsersContext";
+import { useSearchAndFilters } from "../../../common/hooks";
+import { useUsers } from "../../hooks";
 
 export default function Home() {
-    const usersContext = useUsers()
-    if (!usersContext) {
-        return
-    }
-
-    const { loading, users, error, loadMoreUsers, next, tryAgain } = usersContext
+    const { search, filters } = useSearchAndFilters()
+    const {
+        error,
+        isLoading,
+        loadMoreUsers,
+        users,
+        next
+    } = useUsers(search || "", filters)   
+        
     return (
         <>
-            <Loading isLoading={loading}/>
-            {error && <Exception message={error} onTryAgain={tryAgain}/>}
-            {!error && <div className={styles.container}>
+            <Loading isLoading={isLoading}/>
+            {error && <Exception message={error.message} onTryAgain={loadMoreUsers}/>} 
+            {!error && users && <div className={styles.container}>
                 <InfinityUsersList 
-                    users={users} 
-                    scrollCallback={loadMoreUsers} 
+                    users={users}
+                    scrollCallback={loadMoreUsers}
                     next={next}
                     onDeactiveStar={(id: number) => removeUserFromFavourites(id)}
                 />
