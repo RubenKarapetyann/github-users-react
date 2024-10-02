@@ -3,23 +3,28 @@ import { Exception, InfinityUsersList, Loading } from "../../../common/component
 import { removeUserFromFavourites } from "../../../favourites/services";
 import { useSearchAndFilters } from "../../../common/hooks";
 import { useUsers } from "../../hooks";
+import { concatUsersList } from "../../../common/services";
 
 export default function Home() {
     const { search, filters } = useSearchAndFilters()
     const {
         error,
         isLoading,
-        loadMoreUsers,
-        users,
-        next
-    } = useUsers(search || "", filters)   
-        
+        isFetchingNextPage,
+        data,
+        fetchNextPage: loadMoreUsers,
+        hasNextPage: next
+    } = useUsers(search || "", filters)
+
+    const loading = isLoading || isFetchingNextPage
+    const users = data?.pages ? concatUsersList(data?.pages) : []
+
     return (
         <>
-            <Loading isLoading={isLoading}/>
-            {error && <Exception message={error.message} onTryAgain={loadMoreUsers}/>} 
+            <Loading isLoading={loading} />
+            {error && <Exception message={error.message} onTryAgain={loadMoreUsers} />}
             {!error && users && <div className={styles.container}>
-                <InfinityUsersList 
+                <InfinityUsersList
                     users={users}
                     scrollCallback={loadMoreUsers}
                     next={next}

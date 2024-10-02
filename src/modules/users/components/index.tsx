@@ -1,5 +1,1 @@
-import Home from "./Home/Home"
-
-export { 
-    Home as default
-}
+export {default} from "./Home/Home"

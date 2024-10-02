@@ -7,16 +7,16 @@ import { useProfile } from "../../hooks"
 
 export default function Profile() {
     const { login } = useParams()
-    const { error, isLoading, user, refetchUserProfile } = useProfile(login!)
-    
+    const { error, isLoading, data: user, refetch } = useProfile(login!)
+
     return (
         <>
             {!error && user && <div className={styles.flexColumn}>
-                <ProfileLayout {...user}/>
-                <RecomendedUsers since={user.id}/>
+                <ProfileLayout {...user} />
+                <RecomendedUsers since={user.id} />
             </div>}
-            {error && <Exception message={error.message} onTryAgain={refetchUserProfile}/>}
-            <Loading isLoading={isLoading}/>
-        </>  
-    ) 
+            {error && <Exception message={error.message} onTryAgain={refetch} />}
+            <Loading isLoading={isLoading} />
+        </>
+    )
 }
