@@ -1,0 +1,19 @@
+@use "../../../common/styles/mixins";
+@use "../../../common/styles/palette";
+
+.container {
+    @include mixins.flex();
+    flex-direction: column;
+    gap: 5px;
+
+    img {
+        border-radius: 50%;
+        width: 200px;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    h4 {
+        color: palette.$strongGray
+    }
+}
