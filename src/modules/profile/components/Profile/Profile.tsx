@@ -4,6 +4,7 @@ import ProfileLayout from "../ProfileLayout/ProfileLayout"
 import RecomendedUsers from "../RecommendedUsers/RecommendedUsers"
 import { Exception, Loading } from "../../../common/components"
 import { useProfile } from "../../hooks"
+import ProfileLayoutWithModal from "../ProfileLayoutWithModal/ProfileLayoutWithModal"
 
 export default function Profile() {
     const { login } = useParams()
@@ -12,7 +13,7 @@ export default function Profile() {
     return (
         <>
             {!error && user && <div className={styles.flexColumn}>
-                <ProfileLayout {...user} />
+                <ProfileLayoutWithModal {...user} />
                 <RecomendedUsers since={user.id} />
             </div>}
             {error && <Exception message={error.message} onTryAgain={refetch} />}

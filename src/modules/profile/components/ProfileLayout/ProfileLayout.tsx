@@ -1,3 +1,4 @@
+import { memo } from "react"
 import { Star } from "../../../common/components"
 import { removeUserFromFavourites } from "../../../favourites/services"
 import { IProfileLayoutProps } from "../../types"
@@ -10,11 +11,12 @@ const ProfileLayout = ({
     name,
     followers,
     following,
-    bio
+    bio,
+    onOpenModal
 }: IProfileLayoutProps) => (
     <div className={styles.userProfileContainer}>
         <div>
-            <img src={avatar_url} alt="avatar image" className={styles.avatar}/>
+            <img src={avatar_url} alt="avatar image" className={styles.avatar} onClick={onOpenModal}/>
             <Star login={login} avatar_url={avatar_url} id={id} onDeactiveStar={(id: number) => removeUserFromFavourites(id)}/>
         </div>
         <div className={styles.userInfoConatiner}>
@@ -36,4 +38,4 @@ const ProfileLayout = ({
     </div>
 )
 
-export default ProfileLayout
+export default memo(ProfileLayout)
