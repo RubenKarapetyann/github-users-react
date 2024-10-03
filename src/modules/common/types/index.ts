@@ -1,3 +1,4 @@
+import { PropsWithChildren, ReactNode } from "react"
 import { UserOfList } from "./users"
 
 type onDeactiveStarType = (id: number) => void
@@ -27,4 +28,12 @@ export interface ILoadingProps {
 export interface IExceptionProps {
     message: string,
     onTryAgain: () => void
+}
+
+export interface IModalProps extends PropsWithChildren {
+    onClose?: () => void,
+    isOpen: boolean,
+    closeIfClickedOutside?: boolean,
+    title?: ReactNode,
+    footer?: ReactNode
 }

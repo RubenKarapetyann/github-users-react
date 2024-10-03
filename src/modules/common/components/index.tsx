@@ -6,6 +6,7 @@ import SearchHeader from "./SearchHeader/SearchHeader"
 import AdvancedSearchHeader from "./AdvancedSearchHeader/AdvancedSearchHeader"
 import NavBar from "./NavBar/NavBar"
 import Exception from "./Exception/Exception"
+import Modal1 from "./Modals/Modal1"
 
 export { 
     Star,
@@ -15,5 +16,6 @@ export {
     SearchHeader,
     AdvancedSearchHeader,
     NavBar,
-    Exception
+    Exception,
+    Modal1
 }
