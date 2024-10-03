@@ -18,20 +18,18 @@ const Modal1 = ({
             onClose()
         }   
     }
-    
+
     return (
         <div className={styles.background} onClick={onCloseOutside}>
             <div>
-                <div className={styles.header}>
-                    {title && <div className={styles.title}>{title}</div>}
-                    {onClose && (
-                        <div className={styles.buttonContainer}>
-                            <button
-                                onClick={onClose}
-                            >x</button>
-                        </div>
-                    )}
-                </div>
+                {onClose && (
+                    <div className={styles.buttonContainer}>
+                        <button
+                            onClick={onClose}
+                        >x</button>
+                    </div>
+                )}
+                {title && <div className={styles.title}>{title}</div>}
                 <div className={styles.content}>{children}</div>
                 {footer && <div className={styles.footer}>{footer}</div>}
             </div>

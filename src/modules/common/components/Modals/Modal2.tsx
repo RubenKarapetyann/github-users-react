@@ -21,15 +21,13 @@ const Modal2 = ({
     return (
         <div className={styles.background} onClick={onCloseOutside}>
             <div>
-                <div className={styles.header}>
-                    {onClose && (
-                        <div className={styles.buttonContainer}>
-                            <button
-                                onClick={onClose}
-                            >x</button>
-                        </div>
-                    )}
-                </div>
+                {onClose && (
+                    <div className={styles.buttonContainer}>
+                        <button
+                            onClick={onClose}
+                        >x</button>
+                    </div>
+                )}
                 {children}
             </div>
         </div>
