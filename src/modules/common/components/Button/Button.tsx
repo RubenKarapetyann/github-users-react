@@ -1,13 +1,15 @@
+import { forwardRef } from "react"
 import { PALETTE } from "../../constants/palette"
 import { IButtonProps } from "../../types"
 import * as styles from "./Button.module.scss"
 
-const Button = ({ onClick, color=PALETTE.orange, children }: IButtonProps) => (
+const Button = forwardRef<HTMLButtonElement, IButtonProps>(({ color=PALETTE.orange, children, ...rest }: IButtonProps, ref) => (
     <button 
-        onClick={onClick}
         style={{backgroundColor : color}}
         className={styles.button}
+        ref={ref}
+        {...rest}
     >{children}</button>
-)
+))
 
 export default Button

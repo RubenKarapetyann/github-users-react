@@ -1,4 +1,4 @@
-import { MouseEventHandler, PropsWithChildren, ReactNode } from "react"
+import { HTMLAttributes, MouseEventHandler, PropsWithChildren, ReactNode } from "react"
 import { UserOfList } from "./users"
 import { PALETTE } from "../constants/palette"
 
@@ -41,7 +41,7 @@ export interface IModalProps extends PropsWithChildren {
 
 export type IModal2Props = Pick<IModalProps, "children" | "onClose" | "isOpen" | "closeIfClickedOutside">
 
-export interface IButtonProps extends PropsWithChildren {
+export interface IButtonProps extends HTMLAttributes<HTMLButtonElement> {
     onClick: MouseEventHandler<HTMLButtonElement>,
     color?: PALETTE
 }
