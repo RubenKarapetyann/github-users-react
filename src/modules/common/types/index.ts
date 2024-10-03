@@ -39,6 +39,8 @@ export interface IModalProps extends PropsWithChildren {
     footer?: ReactNode
 }
 
+export type IModal2Props = Pick<IModalProps, "children" | "onClose" | "isOpen" | "closeIfClickedOutside">
+
 export interface IButtonProps extends PropsWithChildren {
     onClick: MouseEventHandler<HTMLButtonElement>,
     color?: PALETTE
