@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import * as styles from "./CardContent.scss"
+import * as styles from "./CardContent.module.scss"
 import { ICardContextProps } from "../../types"
 
 const CardContent = ({ avatar_url, login, id }: ICardContextProps) => (
