@@ -1,5 +1,6 @@
-import { PropsWithChildren, ReactNode } from "react"
+import { MouseEventHandler, PropsWithChildren, ReactNode } from "react"
 import { UserOfList } from "./users"
+import { PALETTE } from "../constants/palette"
 
 type onDeactiveStarType = (id: number) => void
 
@@ -36,4 +37,9 @@ export interface IModalProps extends PropsWithChildren {
     closeIfClickedOutside?: boolean,
     title?: ReactNode,
     footer?: ReactNode
+}
+
+export interface IButtonProps extends PropsWithChildren {
+    onClick: MouseEventHandler<HTMLButtonElement>,
+    color?: PALETTE
 }

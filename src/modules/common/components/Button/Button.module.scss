@@ -1,0 +1,16 @@
+button {
+    width: 120px;
+    height: 40px;
+    border: 0;
+    border-radius: 2px;
+    color: palette.$white;
+    font-weight: bold;
+    cursor: pointer;
+
+    // &:hover {
+    //     background-color: palette.$strongOrange;
+    // }
+    // &:active {
+    //     background-color: palette.$strongerOrange;
+    // }
+}

@@ -1,10 +1,13 @@
 import { IExceptionProps } from "../../types"
+import Button from "../Button/Button"
 import * as styles from "./Exception.module.scss"
 
 const Exception = ({ message, onTryAgain }: IExceptionProps) => (
     <div className={styles.container}>
         <p>{message} :(</p>
-        <button onClick={onTryAgain}>Try Again</button>
+        <Button onClick={onTryAgain}>
+            Try Again
+        </Button>
     </div>
 )
 
