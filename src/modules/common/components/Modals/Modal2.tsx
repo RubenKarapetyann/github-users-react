@@ -1,9 +1,9 @@
-import { PropsWithChildren } from "react"
+import { Fragment, MouseEventHandler, PropsWithChildren } from "react"
 import { IModal2Props } from "../../types"
 import * as styles from "./Modal.module.scss"
 
-const Modal2 = ({ 
-    isOpen, 
+const Modal2 = ({
+    isOpen,
     onClose,
     closeIfClickedOutside,
     children
@@ -15,14 +15,13 @@ const Modal2 = ({
     const onCloseOutside = () => {
         if (onClose && closeIfClickedOutside) {
             onClose()
-        }   
+        }
     }
-    
+
     return (
-        <>
-            <div className={styles.background} onClick={onCloseOutside}>
-            </div>
-            <div className={styles.container}>
+        <div className={styles.background} onClick={onCloseOutside}>
+            {/* stops bubling */}
+            <div className={styles.container} onClick={e => e.stopPropagation()}>
                 {onClose && (
                     <div className={styles.buttonContainer}>
                         <button
@@ -32,7 +31,7 @@ const Modal2 = ({
                 )}
                 {children}
             </div>
-        </>
+        </div>
     )
 }
 
