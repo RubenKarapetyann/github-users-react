@@ -9,15 +9,19 @@
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
     @include mixins.flex();
+}
 
-    > div {
-        background-color: palette.$white;
-        width: 80%;
-        height: auto;
-        border-radius: 20px;
-        padding: 20px;
-        position: relative;
-    }
+.container {
+    background-color: palette.$white;
+    width: 80%;
+    height: auto;
+    border-radius: 20px;
+    padding: 20px;
+    position: fixed;
+    right: 50%;
+    bottom: 50%;
+    transform: translate(50%, 50%);
+    z-index: 2;
 }
 
 .title {

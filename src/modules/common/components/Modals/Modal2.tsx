@@ -19,8 +19,10 @@ const Modal2 = ({
     }
     
     return (
-        <div className={styles.background} onClick={onCloseOutside}>
-            <div>
+        <>
+            <div className={styles.background} onClick={onCloseOutside}>
+            </div>
+            <div className={styles.container}>
                 {onClose && (
                     <div className={styles.buttonContainer}>
                         <button
@@ -30,9 +32,16 @@ const Modal2 = ({
                 )}
                 {children}
             </div>
-        </div>
+        </>
     )
 }
+
+// const Title = ({ children, onClose }: PropsWithChildren) => (
+//     <div className={styles.title}>{children}</div>
+// )
+// Title.displayName = 'akjsfajsfh'
+
+// Modal2.Title = Title
 
 Modal2.Title = ({ children }: PropsWithChildren) => (
     <div className={styles.title}>{children}</div>

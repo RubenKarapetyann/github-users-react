@@ -20,8 +20,8 @@ const Modal1 = ({
     }
 
     return (
-        <div className={styles.background} onClick={onCloseOutside}>
-            <div>
+        <>
+            <div className={styles.container}>
                 {onClose && (
                     <div className={styles.buttonContainer}>
                         <button
@@ -33,7 +33,9 @@ const Modal1 = ({
                 <div className={styles.content}>{children}</div>
                 {footer && <div className={styles.footer}>{footer}</div>}
             </div>
-        </div>
+            <div className={styles.background} onClick={onCloseOutside}>
+            </div>
+        </>
     )
 }
 
