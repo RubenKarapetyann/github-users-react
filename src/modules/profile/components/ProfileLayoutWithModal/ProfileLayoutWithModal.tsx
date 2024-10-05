@@ -39,7 +39,7 @@ const ProfileLayoutWithModal = (props: IProfileLayoutWithModalProps) => {
             <Modal2 onClose={onClose} isOpen={isOpen}>
                 <Modal2.Title>
                     <h2 style={{ color: PALETTE.orange }}>{props.login}</h2>
-                    {/* <Modal2.CloseButton /> */}
+                    <Modal2.CloseButton/>
                 </Modal2.Title>
                 <Modal2.Content>
                     <ModalContent

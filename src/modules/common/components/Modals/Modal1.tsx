@@ -25,6 +25,7 @@ const Modal1 = ({
                 {onClose && (
                     <div className={styles.buttonContainer}>
                         <button
+                            className={styles.button}
                             onClick={onClose}
                         >x</button>
                     </div>

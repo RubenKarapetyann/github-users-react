@@ -40,6 +40,9 @@ export interface IModalProps extends PropsWithChildren {
 }
 
 export type IModal2Props = Pick<IModalProps, "children" | "onClose" | "isOpen" | "closeIfClickedOutside">
+export interface ICloseButtonProps extends PropsWithChildren {
+    onClose?: () => void
+}
 
 export interface IButtonProps extends HTMLAttributes<HTMLButtonElement> {
     onClick: MouseEventHandler<HTMLButtonElement>,

@@ -1,4 +1,4 @@
-import * as styles from "../../../common/styles/styles.scss"
+import * as styles from "../../../common/styles/styles.module.scss"
 import EmptyList from "../EmptyList/EmptyList";
 import { InfinityUsersList } from "../../../common/components";
 import { useFavourite } from "../../contexts/FavouriteContext";
